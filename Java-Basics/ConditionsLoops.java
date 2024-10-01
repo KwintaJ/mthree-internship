@@ -1,6 +1,6 @@
 public class ConditionsLoops
 {
-    public static int magicNumber = 8;
+    public static int magicNumber = 4;
 
     public static void show1()
     {
@@ -44,7 +44,7 @@ public class ConditionsLoops
         {
             show3();
         }
-
+        System.out.println();
     }
 
     public static void nestedIfElse()
@@ -64,6 +64,7 @@ public class ConditionsLoops
         {
             show3();
         }
+        System.out.println();
     }
     
     public static void forLoop()
@@ -72,6 +73,7 @@ public class ConditionsLoops
         {
              show1();   
         }
+        System.out.println();
     }
 
     public static void whileLoop()
@@ -82,6 +84,7 @@ public class ConditionsLoops
             show2();
             i--;
         }
+        System.out.println();
     }
     
     public static void doWhileLoop()
@@ -90,8 +93,9 @@ public class ConditionsLoops
         do
         {
             show3();
+            i++;
         }while(i < 20);
+        System.out.println();
     }
-    
     
 }
