@@ -5,12 +5,22 @@ public class ObjectsBasics
     int num = 8;
     int varN;
 
+    // constructors
+    ObjectsBasics()
+    {
+        System.out.println("default constructor");
+    }
+    ObjectsBasics(String a)
+    {
+        System.out.println("parametrised constructor, parameter: " + a);
+    }
+
     public static void main(String[] args)
     {
         //System.out.println(new ObjectsBasics().num);
 
         // static properties
-        ObjectsBasics obj1 = new ObjectsBasics();
+        ObjectsBasics obj1 = new ObjectsBasics("name");
         ObjectsBasics obj2 = new ObjectsBasics();
         obj1.varN = 1;
         obj2.varN = 2;
