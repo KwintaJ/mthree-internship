@@ -1,3 +1,4 @@
+// data wrapping -> encapsulation
 public class ObjectsBasics
 {
     static String constatS = "c";
