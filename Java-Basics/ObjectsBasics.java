@@ -28,9 +28,20 @@ public class ObjectsBasics
         System.out.println("i");
     }
 
+    // instance block
+    {
+        System.out.println("i2");
+    }
+
     // static block
     static
     {
         System.out.println("s");
+    }
+
+    // static block
+    static
+    {
+        System.out.println("s2");
     }
 }
