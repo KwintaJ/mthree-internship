@@ -1,36 +1,36 @@
 public class ConditionsLoops
 {
-    public static int magicNumber = 4;
+    static int magicNumber = 7;
 
-    public static void show1()
+    static void show1()
     {
         System.out.println("--1--");
     }
 
-    public static void show2()
+    static void show2()
     {
         System.out.println("--2--");
     }
 
-    public static void show3()
+    static void show3()
     {
         System.out.println("--3--");
     }
 
     public static void main(String[] args)
     {
-        ifElse();
+        // ifElse();
 
-        nestedIfElse();
+        // nestedIfElse();
 
-        forLoop();
+        // forLoop();
 
-        whileLoop();
+        // whileLoop();
 
-        doWhileLoop();
+        // doWhileLoop();
     }
 
-    public static void ifElse()
+    static void ifElse()
     {
         if(magicNumber == 7)
         {
@@ -47,7 +47,7 @@ public class ConditionsLoops
         System.out.println();
     }
 
-    public static void nestedIfElse()
+    static void nestedIfElse()
     {
         if(magicNumber % 2 == 0)
         {
@@ -67,7 +67,7 @@ public class ConditionsLoops
         System.out.println();
     }
     
-    public static void forLoop()
+    static void forLoop()
     {
         for (int i = 0; i < magicNumber; i++)
         {
@@ -76,7 +76,7 @@ public class ConditionsLoops
         System.out.println();
     }
 
-    public static void whileLoop()
+    static void whileLoop()
     {
         int i = 2 * magicNumber;
         while(i > 0)
@@ -87,7 +87,7 @@ public class ConditionsLoops
         System.out.println();
     }
     
-    public static void doWhileLoop()
+    static void doWhileLoop()
     {
         int i = 2 * magicNumber;
         do
