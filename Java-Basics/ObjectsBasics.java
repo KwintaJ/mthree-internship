@@ -1,6 +1,6 @@
 public class ObjectsBasics
 {
-    static String constatS = "same"
+    static String constatS = "c";
     int num = 8;
     int varN;
 
@@ -8,11 +8,18 @@ public class ObjectsBasics
     {
         System.out.println(new ObjectsBasics().num);
 
+        // static properties
         ObjectsBasics obj1 = new ObjectsBasics();
         ObjectsBasics obj2 = new ObjectsBasics();
+        obj1.varN = 1;
+        obj2.varN = 2;
 
+        obj1.show();
+        obj2.show();
+    }
 
-
-        System.out.println(new ObjectsBasics().num);
+    void show()
+    {
+        System.out.println(constatS + varN);
     }
 }
