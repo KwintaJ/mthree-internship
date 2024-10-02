@@ -6,7 +6,7 @@ public class ObjectsBasics
 
     public static void main(String[] args)
     {
-        System.out.println(new ObjectsBasics().num);
+        //System.out.println(new ObjectsBasics().num);
 
         // static properties
         ObjectsBasics obj1 = new ObjectsBasics();
@@ -21,5 +21,16 @@ public class ObjectsBasics
     void show()
     {
         System.out.println(constatS + varN);
+    }
+
+    // instance block
+    {
+        System.out.println("i");
+    }
+
+    // static block
+    static
+    {
+        System.out.println("s");
     }
 }
