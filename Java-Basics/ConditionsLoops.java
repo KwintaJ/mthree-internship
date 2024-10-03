@@ -25,6 +25,8 @@ public class ConditionsLoops
 
         // forLoop();
 
+        advFor();
+
         // whileLoop();
 
         // doWhileLoop();
@@ -74,6 +76,17 @@ public class ConditionsLoops
              show1();   
         }
         System.out.println();
+    }
+
+    static void advFor()
+    {
+        int[] numbers = {4, 5, 6, 0};
+    
+        // for each loop 
+        for (int number: numbers)
+        {
+            System.out.println(number);
+        }
     }
 
     static void whileLoop()
