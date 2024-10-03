@@ -1,8 +1,25 @@
 // data wrapping -> encapsulation
+
+class ThisAsAnArgument
+{
+    int n;
+
+    void showE(ThisAsAnArgument x)
+    {
+        System.out.println(x.n);
+    }
+
+    ThisAsAnArgument()
+    {
+        n = 0;
+        showE(this);
+    }
+}
+
 public class ObjectsBasics
 {
     static String constatS = "c";
-    int num = 8;
+    int num = 12;
     int varN;
 
     // constructors
@@ -24,6 +41,7 @@ public class ObjectsBasics
         ObjectsBasics obj2 = new ObjectsBasics();
         obj1.varN = 1;
         obj2.varN = 2;
+
 
         obj1.show();
         obj2.show();
