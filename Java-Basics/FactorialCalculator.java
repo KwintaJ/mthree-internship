@@ -1,12 +1,20 @@
 import java.util.Scanner; 
 
-class Factorial
+public class FactorialCalculator
 {
     int num;
 
-    Factorial(int n)
+    FactorialCalculator(int n)
     {
         num = n; 
+    }
+
+    public static void main(String[] args)
+    {
+        Scanner scan = new Scanner(System.in);
+        int inpNum = scan.nextInt();
+        int outNum = new FactorialCalculator(inpNum).calculate();
+        System.out.println(outNum);
     }
 
     int calculate()
@@ -19,15 +27,5 @@ class Factorial
         }
 
         return out;
-    }
-}
-
-public class FactorialCalculator
-{
-    public static void main(String[] args)
-    {
-        Scanner scan = new Scanner(System.in);
-        int inpNum = scan.nextInt();
-        System.out.println(new Factorial(inpNum).calculate());
     }
 }
