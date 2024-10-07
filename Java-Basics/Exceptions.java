@@ -7,15 +7,24 @@ public class Exceptions
         try
         {
             // System.out.println(arr1[6]);
-            int x = arr1[1] / arr1[0];
+            // int x = arr1[1] / arr1[0];
+
+            try
+            {
+                int y = arr1[1] / arr1[0];
+            }
+            catch(ArithmeticException wrongCalculation)
+            {
+                System.out.println("array wrong index - inside block");
+            }
         }
         catch(ArrayIndexOutOfBoundsException wrongArrIndex)
         {
-            System.out.println("array wrong index");
+            System.out.println("array wrong index - outside block");
         }
         catch(ArithmeticException wrongCalculation)
         {
-            System.out.println("illigal operation performed");
+            System.out.println("illigal operation performed  - outside block");
         }
         catch (Exception broad)
         {
