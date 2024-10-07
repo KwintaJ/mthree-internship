@@ -35,7 +35,7 @@ public class Exceptions
         finally
         {
             // this block is always executed, 
-            // no matter exceptions or notg
+            // no matter exceptions or not
             System.out.println("finally");
         }
     }
