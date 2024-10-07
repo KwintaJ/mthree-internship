@@ -9,7 +9,7 @@ class Server
         }
         catch(Exception e)
         {
-            System.out.println("-can not do the thing-");    
+            System.out.println(e.getMessage());    
         }
     }
     void doTheThing() throws Exception
