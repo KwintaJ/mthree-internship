@@ -15,7 +15,8 @@ public class Exceptions
             }
             catch(ArithmeticException wrongCalculation)
             {
-                System.out.println("array wrong index - inside block");
+                System.out.println("illigal operation performed - inside block");
+                System.out.println(arr1[6]);
             }
         }
         catch(ArrayIndexOutOfBoundsException wrongArrIndex)
