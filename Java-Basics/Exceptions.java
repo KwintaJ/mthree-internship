@@ -7,7 +7,6 @@ public class Exceptions
         try
         {
             // System.out.println(arr1[6]);
-            // int x = arr1[1] / arr1[0];
 
             try
             {
@@ -18,6 +17,8 @@ public class Exceptions
                 System.out.println("illigal operation performed - inside block");
                 System.out.println(arr1[6]);
             }
+            
+            // int x = arr1[1] / arr1[0];
         }
         catch(ArrayIndexOutOfBoundsException wrongArrIndex)
         {
@@ -30,6 +31,12 @@ public class Exceptions
         catch (Exception broad)
         {
             System.out.println("error");
+        }
+        finally
+        {
+            // this block is always executed, 
+            // no matter exceptions or notg
+            System.out.println("finally");
         }
     }
 }
