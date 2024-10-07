@@ -1,3 +1,20 @@
+// custom exception class
+class Lazy extends RuntimeException
+{
+    private String errMsg;
+
+    Lazy(String errMsg)
+    {
+        this.errMsg = errMsg;
+    }
+
+    @Override
+    public String getMessage()
+    {
+        return errMsg;
+    }
+}
+
 class Server
 {
     void start()
@@ -7,15 +24,15 @@ class Server
         {
             doTheThing();
         }
-        catch(Exception e)
+        catch(RuntimeException e)
         {
             System.out.println(e.getMessage());    
         }
     }
-    void doTheThing() throws Exception
+    void doTheThing() throws Lazy
     {
         System.out.println("----");
-        throw new Exception("i can not do the thing");
+        throw new Lazy("i'm just not doing this");
     }
 }
 
