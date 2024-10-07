@@ -1,3 +1,24 @@
+class Server
+{
+    void start()
+    {
+        System.out.println("--started--");
+        try
+        {
+            doTheThing();
+        }
+        catch(Exception e)
+        {
+            System.out.println("-can not do the thing-");    
+        }
+    }
+    void doTheThing() throws Exception
+    {
+        System.out.println("----");
+        throw new Exception("i can not do the thing");
+    }
+}
+
 public class Exceptions
 {
     public static void main(String args[])
@@ -38,5 +59,10 @@ public class Exceptions
             // no matter exceptions or not
             System.out.println("finally");
         }
+
+        System.out.println("");
+
+        Server s = new Server();
+        s.start();
     }
 }
