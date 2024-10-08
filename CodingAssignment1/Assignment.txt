@@ -1,0 +1,36 @@
+Question1 -> 
+
+Define encapsulation and demonstrate it by creating a BankAccount class. 
+Ensure that the balance cannot be set directly from outside 
+the class but can be modified 
+only using methods like deposit() and withdraw().
+
+Question2 ->
+
+initialize a single dimension array and sort it in ascending order.
+
+
+Question3 ->
+
+
+create interface "Game" , have an abstract method "play()". 
+From this interface define "Cricket" , "FootBall" and "Tennis".
+Now Define one more class public class Demo
+In this class have a method "perform" which will take interface reference as parameter.
+Inside "perform()" see to it that any child object passed ,its "play()" method should be invoked.
+
+
+Question4 ->
+
+create abstract class Shape. declare "draw()" function as abstract. 
+From this class define "Triangle","Polygon" and "Circle" .
+create an array of Shape having 3 elements.
+store child objects into this array . and call
+their draw function.
+
+
+Question5 ->
+
+Explain the concept of composition in OOP. Create two classes, Author and Book. 
+The Book class should have a reference to the Author class (composition). 
+Write a program to create a book with its author and display their details.
