@@ -4,6 +4,35 @@
 
 import java.util.*;
 
+class Human
+{
+    private int age;
+    String name;
+
+    Human()
+    {
+        age = 0;
+        name = "";
+    }
+
+    Human(int a, String n)
+    {
+        age = a;
+        name = n;
+    }
+
+    int getAge()
+    {
+        return age;
+    }
+
+    @Override
+    public String toString()
+    {
+        return name + " (" + this.age + ")";
+    }
+}
+
 public class Collections
 {
     static void printCollection(Collection x)
@@ -21,14 +50,14 @@ public class Collections
         return out;
     }
 
-    static boolean has8inCollection(Collection<Integer> x)
+    static boolean hasNinCollection(Collection<Integer> x, Integer n)
     {
         Iterator it = x.iterator(); // iterator
 
         while(it.hasNext())
         {
             Object i = it.next();
-            if(i.equals(8))
+            if(i.equals(n))
                 return true;
         }
         return false;
@@ -46,8 +75,9 @@ public class Collections
         stack1.add(1);
         stack1.add(2);
 
-        list2.add(7);
+        list2.add(20);
         list2.add(8);
+        list2.add(11);
         list2.add(9);
 
         Collection[] arrOfCollections = new Collection[3];
@@ -62,7 +92,22 @@ public class Collections
         }
 
         System.out.println(loopThrough(list1));
-        System.out.println(has8inCollection(list1));
-        System.out.println(has8inCollection(list2));         
+        System.out.println(hasNinCollection(list1, 8));
+        System.out.println(hasNinCollection(list2, 8));  
+
+        ArrayList<Human> listOfHumans = new ArrayList<>();
+        listOfHumans.add(new Human(10, "Josh"));  
+        listOfHumans.add(new Human(1, "Ann"));  
+        listOfHumans.add(new Human(45, "CJ"));  
+        listOfHumans.add(new Human(12, "Pablo"));  
+        listOfHumans.add(new Human(18, "Peter"));  
+        listOfHumans.add(new Human(21, "Josh"));  
+
+        System.out.println();
+        printCollection(listOfHumans);
+
+        listOfHumans.sort(Comparator.comparing(Human::getAge));
+        printCollection(listOfHumans);
+
     }
 }
