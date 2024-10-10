@@ -106,8 +106,10 @@ public class Collections
         System.out.println();
         printCollection(listOfHumans);
 
-        listOfHumans.sort(Comparator.comparing(Human::getAge));
-        printCollection(listOfHumans);
+        listOfHumans.sort(Comparator.comparing(Human::getAge));        
+        printCollection(listOfHumansSorted);        
 
+        // entirely different method - stream api
+        //List<Human> listOfHumansSorted = listOfHumans.stream().sorted(Comparator.comparing(Human::getAge)).toList();
     }
 }
