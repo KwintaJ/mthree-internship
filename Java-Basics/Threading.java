@@ -8,14 +8,15 @@ class Task1 implements Runnable
     @Override
     public void run()
     {
-        /*try
+        try
         {
             Thread.sleep(10);
         }
         catch(InterruptedException e)
         {
             e.printStackTrace();
-        }*/
+        }
+        System.out.println("start of " + Thread.currentThread().getName());
 
         for(int i = 0; i < 10; i++)
             System.out.println("(1, " + i + ")");
@@ -27,7 +28,7 @@ class Task2 extends Thread
     @Override
     public void run()
     {
-
+        System.out.println("start of " + Thread.currentThread().getName());
         for(int i = 0; i < 10; i++)
             System.out.println("    (2, " + i + ")");
     }
@@ -43,7 +44,6 @@ public class Threading
         Thread t1 = new Thread(taskA);
         Thread t2 = new Thread(taskB);
 
-        // t1.run();
         t1.start();
 
         try
@@ -55,7 +55,6 @@ public class Threading
             e.printStackTrace();
         }
 
-        // t2.run();
         t2.start();
     }
 }
