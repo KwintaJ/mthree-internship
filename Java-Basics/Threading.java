@@ -45,6 +45,16 @@ public class Threading
 
         // t1.run();
         t1.start();
+
+        try
+        {
+            t1.join();
+        }
+        catch(InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+
         // t2.run();
         t2.start();
     }
