@@ -58,6 +58,5 @@ public class Threading
 
         t2.start();
         t2.setName("B");
-
     }
 }
