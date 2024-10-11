@@ -10,7 +10,7 @@ class SmithFamily implements Runnable
     @Override
     public void run()
     {
-        c.click();
+        c.clickAndZoom();
     }
 }
 
@@ -26,7 +26,7 @@ class BrownFamily implements Runnable
     @Override
     public void run()
     {
-        c.click();    
+        c.clickAndZoom();    
     }
 }
 
@@ -45,6 +45,19 @@ public class Camera
             for(int i = 0; i < 7; i++)
                 System.out.println(Thread.currentThread().getName() + " " + "clicks!");
         }
+    }
+
+    void clickAndZoom()
+    {
+        System.out.println(Thread.currentThread().getName() + " " + "zoom");
+    
+        synchronized(this)
+        {
+            for(int i = 0; i < 3; i++)
+                System.out.println(Thread.currentThread().getName() + " " + "clicks!");
+        }
+
+        System.out.println(Thread.currentThread().getName() + " " + "saves");
     }
 
     public static void main(String[] args)
