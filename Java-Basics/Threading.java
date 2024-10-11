@@ -8,14 +8,14 @@ class Task1 implements Runnable
     @Override
     public void run()
     {
-        try
+        /*try
         {
             Thread.sleep(10);
         }
         catch(InterruptedException e)
         {
             e.printStackTrace();
-        }
+        }*/
 
         for(int i = 0; i < 10; i++)
             System.out.println("(1, " + i + ")");
@@ -29,7 +29,7 @@ class Task2 extends Thread
     {
 
         for(int i = 0; i < 10; i++)
-            System.out.println("(2, " + i + ")");
+            System.out.println("    (2, " + i + ")");
     }
 }
 
