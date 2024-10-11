@@ -10,7 +10,7 @@ class SmithFamily implements Runnable
     @Override
     public void run()
     {
-        c.clickAndZoom();
+        c.zoomClickAndSave();
     }
 }
 
@@ -26,7 +26,7 @@ class BrownFamily implements Runnable
     @Override
     public void run()
     {
-        c.clickAndZoom();    
+        c.zoomClickAndSave();    
     }
 }
 
@@ -47,7 +47,7 @@ public class Camera
         }
     }
 
-    void clickAndZoom()
+    void zoomClickAndSave()
     {
         System.out.println(Thread.currentThread().getName() + " " + "zoom");
     
