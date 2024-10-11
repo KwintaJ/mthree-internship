@@ -45,6 +45,7 @@ public class Threading
         Thread t2 = new Thread(taskB);
 
         t1.start();
+        t1.setName("A");
 
         try
         {
@@ -56,5 +57,7 @@ public class Threading
         }
 
         t2.start();
+        t2.setName("B");
+
     }
 }
