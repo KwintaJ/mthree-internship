@@ -1,11 +1,21 @@
+import toTest.*;
+
 import junit.framework.TestCase;
 import org.junit.Test;
 
 public class Testing extends TestCase
 {
     @Test
-    public void testTrue()
+    public void testLogic1()
     {
-        assertEquals(2 + 2, 4);
+        App a1 = new App();
+        assertEquals(-1, a1.logic("abcdefghi"));
+    }    
+
+    @Test
+    public void testLogic2()
+    {
+        App a2 = new App();
+        assertEquals(0, a2.logic("abc"));
     }
 }
