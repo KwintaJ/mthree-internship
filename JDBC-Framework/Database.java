@@ -107,7 +107,7 @@ public class Database
         // db.deleteUser(6);
 
         db.newUser(6, "Tracey");
-
+        
         db.printUsers();
     }
 }
