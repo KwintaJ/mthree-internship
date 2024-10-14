@@ -52,7 +52,7 @@ public class Database
         }
     }
 
-    public void deleteUser(int id)
+    public void newUser(int id, String name)
     {
         try 
         {
@@ -60,7 +60,7 @@ public class Database
             connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/People?user=root&password=Jaispolka123");
 
             statement = connect.createStatement();
-            statement.executeUpdate("delete from People.Users where ID = " + id + ";");
+            statement.executeUpdate("insert into People.Users(ID, Name) values ( " + id + ", \"" + name + "\");");
         }
         catch(Exception e)
         {
@@ -76,7 +76,7 @@ public class Database
         }
     }
 
-    public void newUser(int id, String name)
+    public void deleteUser(int id)
     {
         try 
         {
@@ -84,7 +84,7 @@ public class Database
             connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/People?user=root&password=Jaispolka123");
 
             statement = connect.createStatement();
-            statement.executeUpdate("insert into People.Users(ID, Name) values ( " + id + ", \"" + name + "\");");
+            statement.executeUpdate("delete from People.Users where ID = " + id + ";");
         }
         catch(Exception e)
         {
