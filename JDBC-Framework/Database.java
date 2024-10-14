@@ -17,7 +17,7 @@ public class Database
         try 
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/People?user=root&password=Jaispolka123");
+            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/People?user=root&password=********");
 
             statement = connect.createStatement();
             resultSet = statement.executeQuery("select * from People.Users");
@@ -57,7 +57,7 @@ public class Database
         try 
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/People?user=root&password=Jaispolka123");
+            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/People?user=root&password=********");
 
             statement = connect.createStatement();
             statement.executeUpdate("insert into People.Users(ID, Name) values ( " + id + ", \"" + name + "\");");
@@ -81,7 +81,7 @@ public class Database
         try 
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/People?user=root&password=Jaispolka123");
+            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/People?user=root&password=********");
 
             statement = connect.createStatement();
             statement.executeUpdate("delete from People.Users where ID = " + id + ";");
@@ -103,8 +103,11 @@ public class Database
     public static void main(String[] args)
     {
         Database db = new Database();
+
         // db.deleteUser(6);
-        // db.newUser(6, "Tracey");
+
+        db.newUser(6, "Tracey");
+
         db.printUsers();
     }
 }
