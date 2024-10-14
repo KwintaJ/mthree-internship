@@ -12,7 +12,7 @@ public class Database
     private Statement statement = null;
     private ResultSet resultSet = null;
 
-    public void printTable()
+    public void printUsers()
     {
         try 
         {
@@ -105,6 +105,6 @@ public class Database
         Database db = new Database();
         // db.deleteUser(6);
         // db.newUser(6, "Tracey");
-        db.printTable();
+        db.printUsers();
     }
 }
