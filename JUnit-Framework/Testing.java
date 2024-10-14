@@ -1,9 +1,11 @@
-package tests;
+import junit.framework.TestCase;
+import org.junit.Test;
 
-class Testing
+public class Testing extends TestCase
 {
-    public static void main(String[] args)
+    @Test
+    public void testTrue()
     {
-        
+        assertEquals(2 + 2, 4);
     }
 }
