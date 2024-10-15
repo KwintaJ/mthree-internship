@@ -4,39 +4,57 @@ import dao.StudentDAO;
 import model.StudentModel;
 import view.StudentView;
 
+import java.util.List;
+
 public class StudentController
 {
-    private StudentModel model;
+    private StudentDAO dao;
     private StudentView view;
 
-    public StudentController(StudentModel model, StudentView view)
+    public StudentController(StudentDAO dao, StudentView view)
     {
-        this.model = model;
+        this.dao = dao;
         this.view = view;
     }
 
-    public void setStudentName(String name)
+    public void startRequest()
     {
-        model.setName(name);
-    }
+        while(true)
+        {
+            try
+            {
+                int choice = view.menu();
 
-    public String getStudentName()
-    {
-        return model.getName();
+                switch(choice)
+                {
+                case 1:
+                    for(StudentModel model : dao.getAllStudents())
+                        view.displayStudent(model.getID(), model.getName(), model.getAge());
+                    break;
+                case 2:
+                    StudentModel st1 = dao.getStudentByID(view.whichID());
+                    view.displayStudent(st1.getID(), st1.getName(), st1.getAge());
+                    break;
+                case 3:
+                    int nID = dao.getSize() + 1;
+                    String nName = view.newName();
+                    int nAge = view.newAge();
+                    dao.newStudent(new StudentModel(nID, nName, nAge));
+                    break;
+                case 4:
+                    StudentModel st2 = dao.getStudentByID(view.whichID());
+                    dao.deleteStudent(st2);
+                    break;
+                case 5:
+                    return;
+                default:
+                    view.wrongChoice();
+                }
+            }
+            catch(RuntimeException e)
+            {
+                view.wrongChoice();
+            }
+        }
     }
-
-    public void setStudentAge(int age)
-    {
-        model.setAge(age);
-    }
-
-    public int getStudentAge()
-    {
-        return model.getAge();
-    }
-
-    public void updateView()
-    {
-        view.displayStudentDetails(model.getName(), model.getAge());
-    }   
 }
