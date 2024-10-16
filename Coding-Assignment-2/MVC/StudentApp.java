@@ -1,7 +1,6 @@
-import controller.StudentController;
-import dao.StudentDAO;
-import model.StudentModel;
 import view.StudentView;
+import dao.StudentDAO;
+import controller.StudentController;
 
 // main - Java application for managing students' information
 public class StudentApp
