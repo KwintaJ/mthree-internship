@@ -58,9 +58,11 @@ public class StudentController
                     return;
 
                 default:
+                    // calls wrongChoice() if choice is not in range [1, 6]
                     view.wrongChoice();
                 }
             }
+            // calls wrongChoice() if choice is not an int
             catch(InputMismatchException e)
             {
                 view.wrongChoice();
@@ -68,12 +70,15 @@ public class StudentController
         }
     }
 
+    // get all students in the database as a list and print every one 
     private void printAllLogic()
     {
         for(StudentModel model : dao.getAllStudents())
             view.displayStudent(model.getID(), model.getName(), model.getAge());        
     }
 
+    // get student with a specific id as a model object and print it
+    // calls wrongChoice() if student of that id does not exist in database
     private void printOneLogic()
     {
         StudentModel st1 = dao.getStudentByID(view.whichID());
@@ -86,6 +91,8 @@ public class StudentController
         view.displayStudent(st1.getID(), st1.getName(), st1.getAge());           
     }
 
+    // insert new model object into a database
+    // calls wrongChoice() if newName or newAge are of wrong format
     private void newStudentLogic()
     {
         int nID = dao.getNextID();
@@ -101,6 +108,9 @@ public class StudentController
                     
     }
 
+    // execute update query on a student with a specific id 
+    // calls wrongChoice() if student of that id does not exist in database
+    // calls wrongChoice() if newName or newAge are of wrong format
     private void updateStudentLogic()
     {
         int id = view.whichID();
@@ -123,6 +133,8 @@ public class StudentController
                     
     }
 
+    // delete a student with a specific id 
+    // calls wrongChoice() if student of that id does not exist in database
     private void deleteStudentLogic()
     {
         StudentModel st3 = dao.getStudentByID(view.whichID());
