@@ -107,6 +107,7 @@ public class StudentController
         }
     }
 
+    // checking if input is correct
     private boolean checkInput(String n, int a)
     {
         if(a <= 0)
@@ -118,6 +119,7 @@ public class StudentController
         return true;
     }
 
+    // checking if searched result exist and is correct
     private boolean checkResult(StudentModel s)
     {
         if(s.getID() <= 0)
