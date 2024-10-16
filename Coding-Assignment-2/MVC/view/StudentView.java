@@ -72,7 +72,7 @@ public class StudentView
     }
 
     // error message
-    // effect of InputMismatchException
+    // effect of choosing option that doesn't exist
     public void wrongChoice()
     {
         clearScreen();
@@ -91,6 +91,7 @@ public class StudentView
     // error message
     // effect of FormattingException:
     // wrong Name/Age formatting
+    // or effect of InputMismatchException
     public void wrongFormat()
     {
         clearScreen();
