@@ -60,7 +60,9 @@ public class StudentView
     }
 
     // error message
-    // can be an effect of RuntimeException
+    // can be an effect of InputMismatchException
+    // student with given ID not existing
+    // or wrong Name/Age formatting
     public void wrongChoice()
     {
         System.out.println("Input not valid!");
