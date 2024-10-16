@@ -63,7 +63,7 @@ public class StudentView
     // can be an effect of RuntimeException
     public void wrongChoice()
     {
-        System.out.println("This is not an option!");
+        System.out.println("Input not valid!");
         System.out.println("");
     }
 }
