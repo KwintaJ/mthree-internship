@@ -18,7 +18,7 @@ public class StudentView
         printMenu(); 
     }  
 
-    // print menu and allow user to select one option
+    // print menu
     private void printMenu()
     {
         System.out.println("---- STUDENT APP ----");
@@ -31,6 +31,7 @@ public class StudentView
         System.out.println("");
     }
 
+    // allow user to select one option from menu
     public int menu()
     {
         Scanner scan = new Scanner(System.in);
