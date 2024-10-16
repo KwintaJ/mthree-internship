@@ -8,7 +8,7 @@ public class StudentView
     // print model information
     public void displayStudent(int id, String studentName, int studentAge)
     {
-        System.out.println("ID: " + id + " Name: " + studentName + " Age: " + studentAge);
+        System.out.println("ID: " + id + ", Name: " + studentName + ", Age: " + studentAge);
     }
 
     // print menu and allow user to select one option
