@@ -17,7 +17,7 @@ public class Database
         try 
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/People?user=root&password=********");
+            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/People?user=root&password=*****");
 
             statement = connect.createStatement();
             resultSet = statement.executeQuery("select * from People.Users");
@@ -57,7 +57,7 @@ public class Database
         try 
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/People?user=root&password=********");
+            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/People?user=root&password=*****");
 
             statement = connect.createStatement();
             statement.executeUpdate("insert into People.Users(ID, Name) values ( " + id + ", \"" + name + "\");");
@@ -81,7 +81,7 @@ public class Database
         try 
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/People?user=root&password=********");
+            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/People?user=root&password=*****");
 
             statement = connect.createStatement();
             statement.executeUpdate("delete from People.Users where ID = " + id + ";");
