@@ -92,6 +92,7 @@ public class StudentController
     // get all students in the database as a list and print every one 
     private void printAllLogic()
     {
+        view.clearScreen();
         for(StudentModel model : dao.getAllStudents())
             view.displayStudent(model.getID(), model.getName(), model.getAge());        
     }
@@ -104,7 +105,8 @@ public class StudentController
         if(!checkResult(st1))
             throw new WrongIdException();
 
-        view.displayStudent(st1.getID(), st1.getName(), st1.getAge());           
+        view.clearScreen();
+        view.displayStudent(st1.getID(), st1.getName(), st1.getAge());
     }
 
     // insert new model object into a database
@@ -117,8 +119,9 @@ public class StudentController
         if(!checkInput(nName, nAge))
             throw new FormattingException();
 
-        dao.newStudent(new StudentModel(nID, nName, nAge));
-                    
+        view.clearScreen();
+        dao.newStudent(new StudentModel(nID, nName, nAge)); 
+        printAllLogic();          
     }
 
     // execute update query on a student with a specific id 
@@ -136,8 +139,9 @@ public class StudentController
         if(!checkInput(uName, uAge))
             throw new FormattingException();
 
-        dao.updateStudent(id, new StudentModel(0, uName, uAge));
-                    
+        view.clearScreen();
+        dao.updateStudent(id, new StudentModel(0, uName, uAge)); 
+        printAllLogic();    
     }
 
     // delete a student with a specific id 
@@ -148,7 +152,9 @@ public class StudentController
         if(!checkResult(st3))
             throw new WrongIdException();
 
-        dao.deleteStudent(st3);                    
+        view.clearScreen();
+        dao.deleteStudent(st3);
+        printAllLogic();
     }
 
     // checking if input is correct

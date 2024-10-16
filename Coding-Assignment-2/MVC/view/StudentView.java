@@ -11,6 +11,12 @@ public class StudentView
         System.out.println("ID: " + id + ", Name: " + studentName + ", Age: " + studentAge);
     }
 
+    public void clearScreen() 
+    {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    }  
+
     // print menu and allow user to select one option
     public int menu()
     {
@@ -24,6 +30,8 @@ public class StudentView
         System.out.println("4. Update student");
         System.out.println("5. Delete student");
         System.out.println("6. Exit application");
+        System.out.println("");
+        System.out.println("Your choice:");
         int choice = scan.nextInt();
 
         return choice;
@@ -63,6 +71,7 @@ public class StudentView
     // effect of InputMismatchException
     public void wrongChoice()
     {
+        clearScreen();
         System.out.println("This is not a choice!");
     }
 
@@ -71,6 +80,7 @@ public class StudentView
     // student with given ID not existing
     public void wrongID()
     {
+        clearScreen();
         System.out.println("Student with given ID does not exist!");
     }
 
@@ -79,6 +89,7 @@ public class StudentView
     // wrong Name/Age formatting
     public void wrongFormat()
     {
+        clearScreen();
         System.out.println("Input not valid!");
     }
 }

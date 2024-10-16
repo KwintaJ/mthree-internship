@@ -17,6 +17,7 @@ public class StudentApp
         StudentController controller = new StudentController(dao, view);
 
         // start the application
+        view.clearScreen();
         controller.startRequest();
     }
 }
