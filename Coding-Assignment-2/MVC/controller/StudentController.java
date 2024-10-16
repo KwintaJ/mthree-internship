@@ -5,6 +5,7 @@ import model.StudentModel;
 import view.StudentView;
 
 import java.util.List;
+import java.util.InputMismatchException;
 
 // model - all the internal logic
 public class StudentController
@@ -34,63 +35,23 @@ public class StudentController
                 switch(choice)
                 {
                 case 1:
-                    for(StudentModel model : dao.getAllStudents())
-                        view.displayStudent(model.getID(), model.getName(), model.getAge());
+                    printAllLogic();
                     break;
 
                 case 2:
-                    StudentModel st1 = dao.getStudentByID(view.whichID());
-                    if(!checkResult(st1))
-                    {
-                        view.wrongChoice();
-                        break;
-                    }
-
-                    view.displayStudent(st1.getID(), st1.getName(), st1.getAge());
+                    printOneLogic();
                     break;
 
                 case 3:
-                    int nID = dao.getNextID();
-                    String nName = view.newName();
-                    int nAge = view.newAge();
-                    if(!checkInput(nName, nAge))
-                    {
-                        view.wrongChoice();
-                        break;
-                    }
-
-                    dao.newStudent(new StudentModel(nID, nName, nAge));
+                    newStudentLogic();
                     break;
 
                 case 4:
-                    int id = view.whichID();
-                    StudentModel st2 = dao.getStudentByID(id);
-                    if(!checkResult(st2))
-                    {
-                        view.wrongChoice();
-                        break;
-                    }
-
-                    String uName = view.newName();
-                    int uAge = view.newAge();
-                    if(!checkInput(uName, uAge))
-                    {
-                        view.wrongChoice();
-                        break;
-                    }
-
-                    dao.updateStudent(id, new StudentModel(0, uName, uAge));
+                    updateStudentLogic();
                     break;
 
                 case 5:
-                    StudentModel st3 = dao.getStudentByID(view.whichID());
-                    if(!checkResult(st3))
-                    {
-                        view.wrongChoice();
-                        break;
-                    }
-
-                    dao.deleteStudent(st3);
+                    deleteStudentLogic();
                     break;
 
                 case 6:
@@ -100,11 +61,78 @@ public class StudentController
                     view.wrongChoice();
                 }
             }
-            catch(RuntimeException e)
+            catch(InputMismatchException e)
             {
                 view.wrongChoice();
             }
         }
+    }
+
+    private void printAllLogic()
+    {
+        for(StudentModel model : dao.getAllStudents())
+            view.displayStudent(model.getID(), model.getName(), model.getAge());        
+    }
+
+    private void printOneLogic()
+    {
+        StudentModel st1 = dao.getStudentByID(view.whichID());
+        if(!checkResult(st1))
+        {
+            view.wrongChoice();
+            return;
+        }
+
+        view.displayStudent(st1.getID(), st1.getName(), st1.getAge());           
+    }
+
+    private void newStudentLogic()
+    {
+        int nID = dao.getNextID();
+        String nName = view.newName();
+        int nAge = view.newAge();
+        if(!checkInput(nName, nAge))
+        {
+            view.wrongChoice();
+            return;
+        }
+
+        dao.newStudent(new StudentModel(nID, nName, nAge));
+                    
+    }
+
+    private void updateStudentLogic()
+    {
+        int id = view.whichID();
+        StudentModel st2 = dao.getStudentByID(id);
+        if(!checkResult(st2))
+        {
+            view.wrongChoice();
+            return;
+        }
+
+        String uName = view.newName();
+        int uAge = view.newAge();
+        if(!checkInput(uName, uAge))
+        {
+            view.wrongChoice();
+            return;
+        }
+
+        dao.updateStudent(id, new StudentModel(0, uName, uAge));
+                    
+    }
+
+    private void deleteStudentLogic()
+    {
+        StudentModel st3 = dao.getStudentByID(view.whichID());
+        if(!checkResult(st3))
+        {
+            view.wrongChoice();
+            return;
+        }
+
+        dao.deleteStudent(st3);                    
     }
 
     // checking if input is correct
