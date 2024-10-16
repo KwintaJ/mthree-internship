@@ -2,8 +2,7 @@ package dao;
 
 import model.StudentModel;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,7 +26,14 @@ public class StudentDAO implements StudentDAOInterface
         List<StudentModel> list = getAllStudents();
         if(list.size() == 0)
             return 1;
-        return list.get(list.size() - 1).getID() + 1;
+
+        int i = 1;
+        for(; i <= list.size(); i++)
+        {
+            if(list.get(i - 1).getID() != i)
+                return i;
+        }
+        return i;
     }
 
     @Override
@@ -63,6 +69,7 @@ public class StudentDAO implements StudentDAOInterface
             catch(Exception e) {}
         }
 
+        students.sort(Comparator.comparing(StudentModel::getID));  
         return students;
     }
 
