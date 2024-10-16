@@ -34,6 +34,8 @@ public class StudentController
     // perform selected option
     public void startRequest()
     {
+        view.clearScreen();
+        
         while(true)
         {
             try

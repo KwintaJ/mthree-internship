@@ -14,15 +14,13 @@ public class StudentView
     public void clearScreen() 
     {  
         System.out.print("\033[H\033[2J");  
-        System.out.flush();  
+        System.out.flush(); 
+        printMenu(); 
     }  
 
     // print menu and allow user to select one option
-    public int menu()
+    private void printMenu()
     {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("");
-        System.out.println("");
         System.out.println("---- STUDENT APP ----");
         System.out.println("1. Print all students");
         System.out.println("2. Print student by id");
@@ -31,7 +29,13 @@ public class StudentView
         System.out.println("5. Delete student");
         System.out.println("6. Exit application");
         System.out.println("");
-        System.out.println("Your choice:");
+    }
+
+    public int menu()
+    {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("");
+        System.out.print("Select action: ");
         int choice = scan.nextInt();
 
         return choice;
