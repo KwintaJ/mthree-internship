@@ -67,18 +67,18 @@ public class StudentView
     }
 
     // error message
-    // effect of FormattingException:
-    // wrong Name/Age formatting
-    public void wrongFormat()
-    {
-        System.out.println("Input not valid!");
-    }
-
-    // error message
     // effect of WrongIdException:
     // student with given ID not existing
     public void wrongID()
     {
         System.out.println("Student with given ID does not exist!");
+    }
+
+    // error message
+    // effect of FormattingException:
+    // wrong Name/Age formatting
+    public void wrongFormat()
+    {
+        System.out.println("Input not valid!");
     }
 }
