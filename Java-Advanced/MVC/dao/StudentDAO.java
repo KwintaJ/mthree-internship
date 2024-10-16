@@ -96,7 +96,9 @@ public class StudentDAO implements StudentDAOInterface
             }
             catch(Exception e) {}
         }
-        return null;
+
+        // returns -1 if a student with given id does not exist
+        return new StudentModel(-1, "", 0);
     }
     
     @Override

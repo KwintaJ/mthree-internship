@@ -37,28 +37,65 @@ public class StudentController
                     for(StudentModel model : dao.getAllStudents())
                         view.displayStudent(model.getID(), model.getName(), model.getAge());
                     break;
+
                 case 2:
                     StudentModel st1 = dao.getStudentByID(view.whichID());
+                    if(!checkResult(st1))
+                    {
+                        view.wrongChoice();
+                        break;
+                    }
+
                     view.displayStudent(st1.getID(), st1.getName(), st1.getAge());
                     break;
+
                 case 3:
                     int nID = dao.getNextID();
                     String nName = view.newName();
                     int nAge = view.newAge();
+                    if(!checkInput(nName, nAge))
+                    {
+                        view.wrongChoice();
+                        break;
+                    }
+
                     dao.newStudent(new StudentModel(nID, nName, nAge));
                     break;
+
                 case 4:
                     int id = view.whichID();
+                    StudentModel st2 = dao.getStudentByID(id);
+                    if(!checkResult(st2))
+                    {
+                        view.wrongChoice();
+                        break;
+                    }
+
                     String uName = view.newName();
                     int uAge = view.newAge();
+                    if(!checkInput(uName, uAge))
+                    {
+                        view.wrongChoice();
+                        break;
+                    }
+
                     dao.updateStudent(id, new StudentModel(0, uName, uAge));
                     break;
+
                 case 5:
-                    StudentModel st2 = dao.getStudentByID(view.whichID());
-                    dao.deleteStudent(st2);
+                    StudentModel st3 = dao.getStudentByID(view.whichID());
+                    if(!checkResult(st3))
+                    {
+                        view.wrongChoice();
+                        break;
+                    }
+
+                    dao.deleteStudent(st3);
                     break;
+
                 case 6:
                     return;
+
                 default:
                     view.wrongChoice();
                 }
@@ -68,5 +105,24 @@ public class StudentController
                 view.wrongChoice();
             }
         }
+    }
+
+    private boolean checkInput(String n, int a)
+    {
+        if(a <= 0)
+            return false;
+
+        if(n.charAt(0) == '"' || n.charAt(0) == ' ' )
+            return false;
+
+        return true;
+    }
+
+    private boolean checkResult(StudentModel s)
+    {
+        if(s.getID() <= 0)
+            return false;
+
+        return true;
     }
 }
