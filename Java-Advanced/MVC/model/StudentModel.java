@@ -1,11 +1,14 @@
 package model;
 
+// model - representation of a student
 public class StudentModel
 {
+    // information about the student
     private int id;
     private String name;
     private int age;
 
+    // constructor
     public StudentModel(int id, String name, int age)
     {
         this.id = id;
@@ -13,6 +16,7 @@ public class StudentModel
         this.age = age;
     }
 
+    // setters and getters
     public String getName()
     {
         return name;
@@ -32,6 +36,9 @@ public class StudentModel
     {
         this.age = age;
     }
+
+    // no setID()
+    // ID will not change
 
     public int getID()
     {
