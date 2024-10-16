@@ -1,0 +1,10 @@
+Create application for managing a database of students.
+
+Each student has unique ID, Name and Age.
+Students are catalogued in one table in MySQL database.
+
+Build an architecture that:
+-The model package may only contain classes that have data members (properties).
+-The dao package contains classes that are responsible for persisting data.
+-The controller package contains classes that orchestrate the program.
+-The view package contains classes that interact with the user.
