@@ -60,12 +60,25 @@ public class StudentView
     }
 
     // error message
-    // can be an effect of InputMismatchException
-    // student with given ID not existing
-    // or wrong Name/Age formatting
+    // effect of InputMismatchException
     public void wrongChoice()
     {
+        System.out.println("This is not a choice!");
+    }
+
+    // error message
+    // effect of FormattingException:
+    // wrong Name/Age formatting
+    public void wrongFormat()
+    {
         System.out.println("Input not valid!");
-        System.out.println("");
+    }
+
+    // error message
+    // effect of WrongIdException:
+    // student with given ID not existing
+    public void wrongID()
+    {
+        System.out.println("Student with given ID does not exist!");
     }
 }

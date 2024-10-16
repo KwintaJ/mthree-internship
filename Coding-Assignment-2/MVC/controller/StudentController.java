@@ -7,6 +7,14 @@ import view.StudentView;
 import java.util.List;
 import java.util.InputMismatchException;
 
+class WrongIdException extends RuntimeException
+{
+}
+
+class FormattingException extends RuntimeException
+{
+}
+
 // model - all the internal logic
 public class StudentController
 {
@@ -58,15 +66,26 @@ public class StudentController
                     return;
 
                 default:
-                    // calls wrongChoice() if choice is not in range [1, 6]
+                    // if choice is not in range [1, 6]
                     view.wrongChoice();
                 }
             }
-            // calls wrongChoice() if choice is not an int
             catch(InputMismatchException e)
             {
+                // if choice is not an int
                 view.wrongChoice();
             }
+            catch(WrongIdException e)
+            {
+                // if student with given id doesn't exist
+                view.wrongID();
+            }
+            catch(FormattingException e)
+            {
+                // if Name/Age format is wrong
+                view.wrongFormat();
+            }
+
         }
     }
 
@@ -78,71 +97,56 @@ public class StudentController
     }
 
     // get student with a specific id as a model object and print it
-    // calls wrongChoice() if student of that id does not exist in database
-    private void printOneLogic()
+    // throws WrongIdException if student of that id does not exist in database
+    private void printOneLogic() throws WrongIdException
     {
         StudentModel st1 = dao.getStudentByID(view.whichID());
         if(!checkResult(st1))
-        {
-            view.wrongChoice();
-            return;
-        }
+            throw new WrongIdException();
 
         view.displayStudent(st1.getID(), st1.getName(), st1.getAge());           
     }
 
     // insert new model object into a database
-    // calls wrongChoice() if newName or newAge are of wrong format
-    private void newStudentLogic()
+    // throws FormattingException if newName or newAge are of wrong format
+    private void newStudentLogic() throws FormattingException
     {
         int nID = dao.getNextID();
         String nName = view.newName();
         int nAge = view.newAge();
         if(!checkInput(nName, nAge))
-        {
-            view.wrongChoice();
-            return;
-        }
+            throw new FormattingException();
 
         dao.newStudent(new StudentModel(nID, nName, nAge));
                     
     }
 
     // execute update query on a student with a specific id 
-    // calls wrongChoice() if student of that id does not exist in database
-    // calls wrongChoice() if newName or newAge are of wrong format
-    private void updateStudentLogic()
+    // throws WrongIdException if student of that id does not exist in database
+    // throws FormattingException if newName or newAge are of wrong format
+    private void updateStudentLogic() throws WrongIdException, FormattingException
     {
         int id = view.whichID();
         StudentModel st2 = dao.getStudentByID(id);
         if(!checkResult(st2))
-        {
-            view.wrongChoice();
-            return;
-        }
+            throw new WrongIdException();
 
         String uName = view.newName();
         int uAge = view.newAge();
         if(!checkInput(uName, uAge))
-        {
-            view.wrongChoice();
-            return;
-        }
+            throw new FormattingException();
 
         dao.updateStudent(id, new StudentModel(0, uName, uAge));
                     
     }
 
     // delete a student with a specific id 
-    // calls wrongChoice() if student of that id does not exist in database
-    private void deleteStudentLogic()
+    // throws WrongIdException if student of that id does not exist in database
+    private void deleteStudentLogic() throws WrongIdException
     {
         StudentModel st3 = dao.getStudentByID(view.whichID());
         if(!checkResult(st3))
-        {
-            view.wrongChoice();
-            return;
-        }
+            throw new WrongIdException();
 
         dao.deleteStudent(st3);                    
     }
