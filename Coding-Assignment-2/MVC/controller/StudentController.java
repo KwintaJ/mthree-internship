@@ -75,7 +75,7 @@ public class StudentController
             catch(InputMismatchException e)
             {
                 // if choice is not an int
-                view.wrongChoice();
+                view.wrongFormat();
             }
             catch(WrongIdException e)
             {
