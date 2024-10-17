@@ -20,6 +20,15 @@ public class StudentDAO implements StudentDAOInterface
     private Statement statement = null;
     private ResultSet resultSet = null;
 
+    // mysql login
+    private String sqlUser = "root";
+    private String sqlPassword = "*****";
+    private String hostPort = "localhost:3306";
+
+    // mysql queries
+    private String database = "Students";
+    private String databaseTable = "Students.StudentInfo";
+
     // next student's id
     public int getNextID()
     {
@@ -43,10 +52,10 @@ public class StudentDAO implements StudentDAOInterface
         try 
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/Students?user=root&password=*****");
+            connect = DriverManager.getConnection("jdbc:mysql://" + hostPort + "/" + database + "?user=" + sqlUser + "&password=" + sqlPassword);
 
             statement = connect.createStatement();
-            resultSet = statement.executeQuery("select * from Students.StudentInfo");
+            resultSet = statement.executeQuery("select * from " + databaseTable);
 
             ResultSetMetaData rsmd = resultSet.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
@@ -79,10 +88,10 @@ public class StudentDAO implements StudentDAOInterface
         try 
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/Students?user=root&password=*****");
+            connect = DriverManager.getConnection("jdbc:mysql://" + hostPort + "/" + database + "?user=" + sqlUser + "&password=" + sqlPassword);
 
             statement = connect.createStatement();
-            resultSet = statement.executeQuery("select * from Students.StudentInfo where ID = " + id);
+            resultSet = statement.executeQuery("select * from " + databaseTable + " where ID = " + id);
 
             ResultSetMetaData rsmd = resultSet.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
@@ -115,10 +124,10 @@ public class StudentDAO implements StudentDAOInterface
         try 
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/Students?user=root&password=*****");
+            connect = DriverManager.getConnection("jdbc:mysql://" + hostPort + "/" + database + "?user=" + sqlUser + "&password=" + sqlPassword);
 
             statement = connect.createStatement();
-            statement.executeUpdate("insert into Students.StudentInfo(ID, Name, Age) values ( " + s.getID() + ", \"" + s.getName() + "\", " + s.getAge() + ");");
+            statement.executeUpdate("insert into " + databaseTable + "(ID, Name, Age) values ( " + s.getID() + ", \"" + s.getName() + "\", " + s.getAge() + ");");
         }
         catch(Exception e)
         {
@@ -140,10 +149,10 @@ public class StudentDAO implements StudentDAOInterface
         try 
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/Students?user=root&password=*****");
+            connect = DriverManager.getConnection("jdbc:mysql://" + hostPort + "/" + database + "?user=" + sqlUser + "&password=" + sqlPassword);
 
             statement = connect.createStatement();
-            statement.executeUpdate("update StudentInfo set Name = \"" + s.getName() + "\", Age = " + s.getAge() + " where ID = " + id + ";");
+            statement.executeUpdate("update " + databaseTable + " set Name = \"" + s.getName() + "\", Age = " + s.getAge() + " where ID = " + id + ";");
         }
         catch(Exception e)
         {
@@ -165,10 +174,10 @@ public class StudentDAO implements StudentDAOInterface
         try 
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/Students?user=root&password=*****");
+            connect = DriverManager.getConnection("jdbc:mysql://" + hostPort + "/" + database + "?user=" + sqlUser + "&password=" + sqlPassword);
 
             statement = connect.createStatement();
-            statement.executeUpdate("delete from Students.StudentInfo where ID = " + s.getID() + ";");
+            statement.executeUpdate("delete from " + databaseTable + " where ID = " + s.getID() + ";");
         }
         catch(Exception e)
         {
