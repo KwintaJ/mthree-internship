@@ -15,6 +15,7 @@ public class Samsung implements Mobile
 {
     @Getter
     @Setter
+    @Value("s24")
     private String model;
 
     @Override
@@ -23,8 +24,8 @@ public class Samsung implements Mobile
         System.out.println("calling from " + model);
     }
 
-    public void setModel(String model)
+    /* public void setModel(String model)
     {
         this.model = model;
-    }
+    }*/
 }
