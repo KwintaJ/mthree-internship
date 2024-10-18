@@ -9,8 +9,12 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 @Component
+@NoArgsConstructor
+@AllArgsConstructor
 public class Iphone implements Mobile
 {
+    @Getter
+    @Setter
     private String model;
 
     @Override
@@ -23,4 +27,5 @@ public class Iphone implements Mobile
     {
         this.model = model;
     }
+
 }
