@@ -8,29 +8,29 @@
         http://www.springframework.org/schema/context
         https://www.springframework.org/schema/context/spring-context.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>kwintaJ</groupId>
-	<artifactId>alpha-build</artifactId>
-	<version>0.1-ALPHA</version>
-	<name>Spring-showcase</name>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>kwintaJ</groupId>
+    <artifactId>alpha-build</artifactId>
+    <version>0.1-ALPHA</version>
+    <name>Spring-showcase</name>
 
-	<properties>
-		<java.version>17</java.version>
-	</properties>
+    <properties>
+        <java.version>17</java.version>
+    </properties>
 
-	<dependencies>
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-context</artifactId>
-		    <version>6.1.4</version>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
+        </dependency>
 
-		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <version>1.18.12</version>
-		    <scope>provided</scope>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.3.20</version>
+        </dependency>
+    </dependencies>
 
 </project>

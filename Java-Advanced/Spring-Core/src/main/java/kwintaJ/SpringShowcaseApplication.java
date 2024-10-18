@@ -11,7 +11,9 @@ public class SpringShowcaseApplication
         Samsung s24 = (Samsung) context.getBean("mobile1");
         Iphone i16 = (Iphone) context.getBean("mobile2");
 
+        // s24.setModel("S24 Ultra");
+
         s24.call();
         i16.call();
-    }
+   }
 }

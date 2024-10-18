@@ -15,6 +15,7 @@ public class Iphone implements Mobile
 {
     @Getter
     @Setter
+    @Value("i16")
     private String model;
 
     @Override

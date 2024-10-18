@@ -13,7 +13,6 @@
 
     <!-- bean definitions here -->
     <bean id="mobile1" class="kwintaJ.Samsung">
-        <property name="model" value="S24 Ultra"></property>
     </bean>
 
     <bean id="mobile2" class="kwintaJ.Iphone">
