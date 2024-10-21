@@ -13,6 +13,7 @@ SELECT MAX(Age) AS "EldestStudentName"
 SELECT AVG(Age) AS "AverageAge" 
     FROM StudentInfo;
 
+
 -- Like, wildcards
 SELECT * FROM StudentInfo
     WHERE Name LIKE "J%";
@@ -23,11 +24,12 @@ SELECT * FROM StudentInfo
     -- % = multiple characters
     -- _ = one character
 
--- Grouping
+
+-- Grouping, having
 SELECT AVG(Age) AS "AverageAgeByGender", Gender
     FROM StudentInfo 
     GROUP BY Gender;
--- Having
+
 SELECT AVG(Age) AS "AverageAgeOfWomen"
     FROM StudentInfo 
     GROUP BY Gender
