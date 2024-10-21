@@ -1,4 +1,4 @@
-package kwintaJ;
+package kwintaj.mobilefactoryapp;
 
 public interface Mobile
 {

@@ -12,10 +12,11 @@
     <context:component-scan base-package="kwintaJ"/>
 
     <!-- bean definitions here -->
-    <bean id="mobile1" class="kwintaJ.Samsung">
+    <bean id="mobile1" class="kwintaj.mobilefactoryapp.Samsung">
+        <property name="model" value="S24 Ultra"></property>
     </bean>
 
-    <bean id="mobile2" class="kwintaJ.Iphone">
+    <bean id="mobile2" class="kwintaj.mobilefactoryapp.Iphone">
         <property name="model" value="iPhone 16 Pro"></property>
     </bean>
 

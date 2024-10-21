@@ -1,18 +1,21 @@
-package kwintaJ;
+package kwintaj.mobilefactoryapp;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Component
 @NoArgsConstructor
 @AllArgsConstructor
-public class Samsung implements Mobile
+public class Iphone implements Mobile
 {
     @Getter
     @Setter
-    @Value("s24")
+    @Value("i16")
     private String model;
 
     @Override
@@ -20,9 +23,4 @@ public class Samsung implements Mobile
     {
         System.out.println("calling from " + model);
     }
-
-    /* public void setModel(String model)
-    {
-        this.model = model;
-    }*/
 }
