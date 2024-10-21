@@ -16,11 +16,11 @@ CREATE TABLE IF NOT EXISTS StudentInfo (
 );
 
 INSERT INTO StudentInfo(Name, Age) values
-    ("Veryan", 22),
+    ("Veryan", 25),
     ("Jan", 21),
-    ("Aysu", 20),
+    ("Aysu", 21),
     ("Jordan", 25),
-    ("Andre", 29),
+    ("Andre", 19),
     ("Joanna", 19),
     ("Vlad", 30);
 
