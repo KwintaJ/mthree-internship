@@ -9,7 +9,7 @@
         https://www.springframework.org/schema/context/spring-context.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>kwintaJ</groupId>
+    <groupId>kwintaj</groupId>
     <artifactId>alpha-build</artifactId>
     <version>0.1-ALPHA</version>
     <name>Spring-showcase</name>
