@@ -1,6 +1,5 @@
 package kwintaj.mobilefactoryapp;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import lombok.Getter;
@@ -15,7 +14,6 @@ public class Samsung implements Mobile
 {
     @Getter
     @Setter
-    @Value("s24")
     private String model;
 
     @Override
