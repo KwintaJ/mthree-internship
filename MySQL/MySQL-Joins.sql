@@ -76,7 +76,7 @@ SELECT SubjectName, AVG(Mark) as "AverageMark"
     ON Subjects.SubjectID = StudentMarks.SubjectID
     GROUP BY SubjectName;
 
--- Average per subject
+-- Average per student
 SELECT StudentInfo.ID as "StudentID",
     Name as "StudentName",
     AVG(Mark) as "AverageMark"
