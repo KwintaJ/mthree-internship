@@ -56,5 +56,33 @@ CREATE TABLE IF NOT EXISTS StudentMarks (
 --     (6, 9, 90),
 --     (7, 3, 100);
 
-SELECT * FROM Subjects;
-SELECT * FROM StudentMarks;
+-- Simple join on
+SELECT StudentInfo.ID as "StudentID", 
+    Name as "StudentName", 
+    SubjectName, 
+    Mark 
+        FROM StudentInfo 
+        JOIN StudentMarks 
+        ON StudentInfo.ID = StudentMarks.ID
+        JOIN Subjects
+        ON Subjects.SubjectID = StudentMarks.SubjectID;
+
+-- Average per subject
+SELECT SubjectName, AVG(Mark) as "AverageMark"
+    FROM StudentInfo 
+    JOIN StudentMarks 
+    ON StudentInfo.ID = StudentMarks.ID
+    JOIN Subjects
+    ON Subjects.SubjectID = StudentMarks.SubjectID
+    GROUP BY SubjectName;
+
+-- Average per subject
+SELECT StudentInfo.ID as "StudentID",
+    Name as "StudentName",
+    AVG(Mark) as "AverageMark"
+        FROM StudentInfo 
+        JOIN StudentMarks 
+        ON StudentInfo.ID = StudentMarks.ID
+        JOIN Subjects
+        ON Subjects.SubjectID = StudentMarks.SubjectID
+        GROUP BY StudentInfo.ID;
