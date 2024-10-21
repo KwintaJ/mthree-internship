@@ -2,12 +2,6 @@ CREATE DATABASE IF NOT EXISTS Students;
 
 USE Students;
 
--- CREATE TABLE StudentInfo(
---    ID INT,
---    Name VARCHAR(255),
---    Age INT
--- );
-
 CREATE TABLE IF NOT EXISTS StudentInfo (
     ID INT UNSIGNED NOT NULL AUTO_INCREMENT,
     Name VARCHAR(255),
