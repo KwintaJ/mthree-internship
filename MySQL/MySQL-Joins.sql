@@ -55,3 +55,11 @@ SELECT StudentInfo.ID as "StudentID",
         JOIN Subjects
         ON Subjects.SubjectID = StudentMarks.SubjectID
         GROUP BY StudentInfo.ID;
+
+-- Self join
+-- Prints out pair of students with the same age
+SELECT a.Name, b.Name
+    FROM StudentInfo a
+    JOIN StudentInfo b
+    ON a.Age = b.Age
+    WHERE a.Name != b.Name;
