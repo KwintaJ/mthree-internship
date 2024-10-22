@@ -38,3 +38,7 @@ SELECT AVG(Age) AS "AverageAgeOfWomen"
 
 -- Sorting
 SELECT Name, Age FROM StudentInfo ORDER BY Age DESC;
+
+
+-- Uniqueness
+SELECT DISTINCT Age FROM StudentInfo ORDER BY Age ASC;
