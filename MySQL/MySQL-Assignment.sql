@@ -41,7 +41,7 @@ INSERT INTO courses VALUES
     (1, "English", "Kate"),
     (2, "Maths", "Bob"),
     (3, "Computer Science", "Bob"),
-    (4, "Philosophy", "Kate");
+    (4, "Physics", "Kate");
 
 INSERT INTO enrollments VALUES
     (1, 1, 1, "A"),
@@ -51,7 +51,8 @@ INSERT INTO enrollments VALUES
     (5, 2, 4, "B"),
     (6, 3, 1, "B"),
     (7, 3, 2, "B"),
-    (8, 4, 1, "C");
+    (8, 3, 4, "C"),
+    (9, 4, 1, "C");
 
 
 -- Queries
@@ -67,7 +68,10 @@ SELECT DISTINCT student_name as "students_who_have_A"
     FROM enrollments e 
     JOIN students s 
     ON e.student_id = s.student_id 
-    WHERE grade LIKE "A";
+        WHERE grade LIKE "A";
 
-SELECT * FROM
-
+SELECT student_id, grade as "grade_in_Physics"
+    FROM enrollments e
+    JOIN courses c
+    ON e.course_id = c.course_id
+        WHERE c.course_name LIKE "Physics";
