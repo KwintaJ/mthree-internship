@@ -1,14 +1,19 @@
 package kwinta.app;
 
+import java.util.*;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 public class BookController
 {
-    @GetMapping("/books")
-    public String controllerAPI()
+    @GetMapping("/initialize")
+    public String createDatabase()
     {
-        return "first api";
+        BookService serv = new BookService();
+        List<Book> list = serv.createDatabase();
+
+        return list.get(1).toString();
     }
 }
