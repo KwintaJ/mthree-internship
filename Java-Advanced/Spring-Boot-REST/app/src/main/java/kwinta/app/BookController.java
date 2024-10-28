@@ -4,16 +4,26 @@ import java.util.*;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 public class BookController
 {
-    @GetMapping("/initialize")
+    BookService serv;
+
+    @GetMapping("/books/initialize")
     public String createDatabase()
     {
-        BookService serv = new BookService();
-        List<Book> list = serv.createDatabase();
+        serv = new BookService();
+        serv.createDatabase();
 
-        return list.get(1).toString();
+        return "database created";
+    }
+
+    @GetMapping("/books/get/{id}")
+    public String getBookOnId(@PathVariable("id") int id)
+    {
+        Book b = serv.getBookById(id);
+        return b.toString();
     }
 }
