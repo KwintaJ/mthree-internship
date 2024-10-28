@@ -9,7 +9,6 @@ public class Application
 	public static void main(String[] args)
 	{
 		SpringApplication.run(Application.class, args);
-		BookController controller = new BookController();
-		System.out.println(controller.controllerAPI());
+		System.out.println("---app started---");
 	}
 }
