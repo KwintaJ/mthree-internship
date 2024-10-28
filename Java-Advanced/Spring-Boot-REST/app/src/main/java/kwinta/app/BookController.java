@@ -2,6 +2,8 @@ package kwinta.app;
 
 import java.util.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,7 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RestController
 public class BookController
 {
-    BookService serv;
+    @Autowired
+    private BookService serv;
 
     @GetMapping("/books/initialize")
     public String createDatabase()

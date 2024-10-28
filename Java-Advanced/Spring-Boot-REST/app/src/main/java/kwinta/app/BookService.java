@@ -1,7 +1,9 @@
 package kwinta.app;
 
 import  java.util.*;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BookService
 {
     List<Book> bookData;
@@ -13,9 +15,9 @@ public class BookService
 
     public void createDatabase()
     {
-        bookData.add(new Book(1, "Harry Potter", "J. K. Rowling"));
-        bookData.add(new Book(2, "The Lord of the Rings",  "J. R. R. Tolkien"));
-        bookData.add(new Book(3, "Ender's Game", "O. S. Card"));
+        bookData.add(new Book(101, "Harry Potter", "J. K. Rowling"));
+        bookData.add(new Book(102, "The Lord of the Rings",  "J. R. R. Tolkien"));
+        bookData.add(new Book(103, "Ender's Game", "O. S. Card"));
     }
 
     public List<Book> getAllBooks()
