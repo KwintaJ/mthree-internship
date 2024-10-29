@@ -32,14 +32,7 @@ public class BookController
         }
         return ResponseEntity.of(Optional.of(b));
     }
-    
-    @PostMapping("/books")
-    public Book addBook(@RequestBody Book bookObject)
-    {
-        Book b = bookService.addBook(bookObject);
-        return b;
-    }
-    
+        
     @GetMapping("/books/{id}")
     public Book getBookBasedOnId(@PathVariable("id") int id)
     {
@@ -51,11 +44,18 @@ public class BookController
     {
         bookService.deleteBookByID(id); 
     }
+
+    @PostMapping("/books")
+    public Book addBook(@RequestBody Book bookObject)
+    {
+        Book b = bookService.addBook(bookObject);
+        return b;
+    }
     
     @PutMapping("/books/{id}")
     public void updateBook(@RequestBody Book updatedBookObject, @PathVariable("id") int id)
     {
-        bookService.updateBookByID(updatedBookObject,id);   
+        bookService.updateBookByID(updatedBookObject, id);   
     }
 }   
     
