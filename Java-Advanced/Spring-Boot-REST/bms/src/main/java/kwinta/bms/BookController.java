@@ -25,7 +25,7 @@ public class BookController
     public ResponseEntity<List<Book>> getBooks()
     {
         List<Book> b = bookService.getAllBooks();
-        if (b.size() <=0)
+        if (b.size() <= 0)
         {
             System.out.println(b);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -43,9 +43,14 @@ public class BookController
     }
     
     @DeleteMapping("/books/{id}")
-    public void deleteBook(@PathVariable("id") int id)
+    public ResponseEntity<Book> deleteBook(@PathVariable("id") int id)
     {
+        Book b = bookService.getBookByID(id);
+        if(b == null)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
         bookService.deleteBookByID(id); 
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @PostMapping("/books")
