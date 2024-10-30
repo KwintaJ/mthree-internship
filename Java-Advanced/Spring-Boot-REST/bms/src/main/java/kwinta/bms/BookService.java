@@ -97,8 +97,8 @@ public class BookService
             catch(Exception e) {}
         }
 
-        // returns -1 if a student with given id does not exist
-        return new Book(-1, "", "");
+        // returns null if a student with given id does not exist
+        return null;
     }
     
     public void deleteBookByID(int id)

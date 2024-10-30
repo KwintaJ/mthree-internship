@@ -34,9 +34,12 @@ public class BookController
     }
         
     @GetMapping("/books/{id}")
-    public Book getBookBasedOnId(@PathVariable("id") int id)
+    public ResponseEntity<Book> getBookBasedOnId(@PathVariable("id") int id)
     {
-       return bookService.getBookByID(id); 
+        Book b = bookService.getBookByID(id);
+        if(b == null)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        return ResponseEntity.of(Optional.of(b));
     }
     
     @DeleteMapping("/books/{id}")
