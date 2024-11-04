@@ -18,13 +18,7 @@ public class GringottsApplication
 {
     public static void main(String[] args)
     {
-        ApplicationContext context = SpringApplication.run(GringottsApplication.class, args);
-        WizardRepository wizardRepository= context.getBean(WizardRepository.class);
-
+        SpringApplication.run(GringottsApplication.class, args);
         System.out.println("The Bank has been opened!");
-
-        Optional<Wizard> resultWizard = wizardRepository.findById(10000332);
-        Wizard wizardFound = resultWizard.get();
-        System.out.println(wizardFound);
     }
 }

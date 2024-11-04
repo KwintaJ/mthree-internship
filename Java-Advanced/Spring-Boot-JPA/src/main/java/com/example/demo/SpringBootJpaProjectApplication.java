@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+
 import com.example.demo.dao.UserRepository;
 import com.example.demo.entities.User;
 

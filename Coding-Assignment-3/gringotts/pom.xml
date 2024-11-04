@@ -10,7 +10,7 @@
     </parent>
     <groupId>kwinta</groupId>
     <artifactId>gringotts</artifactId>
-    <version>0.3</version>
+    <version>0.4</version>
     <name>gringotts</name>
     <description>Final Project - Jan Kwinta</description>
     <url/>
@@ -38,10 +38,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        <dependency>
+<!--    <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+        </dependency> -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
