@@ -6,3 +6,4 @@ Documentation
 **0.0** - project directory structure  
 **0.1** - README created, changes to pom.xml and application.properties  
 **0.2** - sql .schema and .data files
+**0.3** - created entities and dao files

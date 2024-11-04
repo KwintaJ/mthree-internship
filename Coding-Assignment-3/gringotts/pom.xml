@@ -10,7 +10,7 @@
     </parent>
     <groupId>kwinta</groupId>
     <artifactId>gringotts</artifactId>
-    <version>0.2</version>
+    <version>0.3</version>
     <name>gringotts</name>
     <description>Final Project - Jan Kwinta</description>
     <url/>

@@ -1,6 +1,6 @@
 USE Gringotts;
 
-INSERT INTO wizards VALUES
+INSERT INTO wizard VALUES
 --  (id,     , name)
     (10000332, "Albus Dumbledore"),
     (10001334, "Harry Potter"),
@@ -29,7 +29,7 @@ INSERT INTO wizards VALUES
     (10002885, "Arthur Weasley"),
     (10002886, "Kingsley Shacklebolt");
 
-INSERT INTO vaults VALUES
+INSERT INTO vault VALUES
 --  (vaultNum, wizard(id), galleon,  sickle, knut)
     (312,      10000332,   12000000, 6000,   45000),
     (313,      10002882,   17862,    0,      0),
@@ -52,4 +52,4 @@ INSERT INTO vaults VALUES
     (457,      10001339,   123561,   2,      99);
 
 -- to ensure proper database initialization execute this query
--- SELECT name, vaultNum, galleon, sickle, knut FROM vaults v INNER JOIN wizards w ON v.wizard = w.id ORDER BY galleon DESC;
+-- SELECT name, vaultNum, galleon, sickle, knut FROM vault v INNER JOIN wizard w ON v.wizard = w.id ORDER BY galleon DESC;
