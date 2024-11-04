@@ -51,8 +51,5 @@ INSERT INTO vaults VALUES
     (456,      10000332,   0,        80001,  90),
     (457,      10001339,   123561,   2,      99);
 
-SELECT name, vaultNum, galleon, sickle, knut
-    FROM vaults v
-    INNER JOIN wizards w
-    ON v.wizard = w.id
-    ORDER BY galleon DESC;
+-- to ensure proper database initialization execute this query
+-- SELECT name, vaultNum, galleon, sickle, knut FROM vaults v INNER JOIN wizards w ON v.wizard = w.id ORDER BY galleon DESC;
