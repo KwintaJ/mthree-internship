@@ -1,0 +1,59 @@
+100 POINTS -> project
+ 
+ 
+1. readable code (naming, comments)
+2. spacing , formatting
+3. tightly  coupled code --->   -20 points
+---------------------------------
+ 
+10 JSP ---> 
+10 SECURITY(VALIDATION, AUTH2, SPRING SECURITIES) --> 
+POSTMAN TOOL 
+ 
+ 
+TOTAL POINTS 120
+ 
+---------------------------------
+BANK , FIAN. --> 10 POINTS
+---------------------------------
+ 
+ 
+WED ->    10 POINTS 
+THUR ->   8 POINTS
+FRI ->    5 POINTS
+ 
+TUESDAY -> NO EXTRA POINTS 
+ 
+ 
+ 
+------------------------------
+mandatory Requirement
+ 
+1. SPRING BOOT
+2. REST API
+3. JPA 
+ 
+------------------------------
+ 
+applets
+servlets 
+jsp
+ 
+ 
+Jsp  -> java server pages
+ 
+ 
+explaination + QNA => 60 points 
+ 
+-------------------------------------------
+160 points fixed , 40 bonus
+total =>  200 points 
+ 
+--------------------------->
+ 
+STAR UML TOOL ->
+GPT -> 
+ 
+UML -> CHARCHTER, TABLE, ACTIVITY
+ 
+--------------------------->
