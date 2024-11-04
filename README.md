@@ -12,3 +12,4 @@ Programs created in October and November 2024 during internship at Mthree Consul
   
 *Assignment 1:* Basic coding showcasing OOP concepts  
 *Assignment 2:* MVC-DAO application with database connectivity
+*Assignment 3:* Final project - full-stack banking application 
