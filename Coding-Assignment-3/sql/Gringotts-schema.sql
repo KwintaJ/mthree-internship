@@ -12,7 +12,7 @@ CREATE TABLE wizard(
 DROP TABLE IF EXISTS vault;
 CREATE TABLE vault(
     vault_num INT NOT NULL,
-    wizard INT,
+    wizard INT NOT NULL,
     galleon INT NOT NULL,
     sickle INT NOT NULL,
     knut INT NOT NULL,
@@ -26,5 +26,6 @@ CREATE TABLE transaction(
     from_vault INT NOT NULL,
     to_vault INT NOT NULL,
     knuts INT NOT NULL,
+    transaction_time DATETIME(6),
     PRIMARY KEY(transaction_id)
 );

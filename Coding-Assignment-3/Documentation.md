@@ -8,3 +8,4 @@ Documentation
 **0.2** - sql .schema and .data files  
 **0.3** - created entities and dao files  
 **0.4** - created rest controller  
+**0.5** - http method mapping  
