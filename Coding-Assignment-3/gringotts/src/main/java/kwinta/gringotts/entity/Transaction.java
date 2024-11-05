@@ -21,4 +21,5 @@ public class Transaction
     private int transactionId;
     private int fromVault;
     private int toVault;
+    private int knuts;
 }

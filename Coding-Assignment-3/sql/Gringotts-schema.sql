@@ -25,5 +25,6 @@ CREATE TABLE transaction(
     transaction_id INT NOT NULL,
     from_vault INT NOT NULL,
     to_vault INT NOT NULL,
+    knuts INT NOT NULL,
     PRIMARY KEY(transaction_id)
 );
