@@ -35,7 +35,7 @@ public class GringottsController
 
     @Autowired
     private TransactionRepository transactionRepository;
-    
+
     @Autowired
     private BankService bankService;
     
@@ -57,6 +57,16 @@ public class GringottsController
         for(Vault v : vaults)
             bankService.simplify(v.getVaultNum());
         return vaults;
+    }
+
+    @PostMapping("/new-vault/{id}")
+    public void claimNewVault(@PathVariable("id") int id) {
+        Vault v = new Vault();
+        v.setWizard(id);
+        v.setGalleon(0);
+        v.setSickle(0);
+        v.setKnut(0);
+        vaultRepository.save(v);
     }
 
     @GetMapping("/{id}/transactions/{vn}")

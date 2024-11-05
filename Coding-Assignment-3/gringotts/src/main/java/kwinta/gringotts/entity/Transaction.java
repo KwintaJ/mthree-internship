@@ -22,7 +22,7 @@ import lombok.ToString;
 public class Transaction 
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int transactionId;
     private int fromVault;
     private int toVault;

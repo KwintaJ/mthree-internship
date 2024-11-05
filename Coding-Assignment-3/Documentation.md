@@ -11,3 +11,4 @@ Documentation
 **0.5** - http method mapping  
 **0.6** - galleon to GBP conversion  
 **0.7** - JSP, PageController, dashboard  
+**0.8** - CSS styling, vault management, new vault claiming  

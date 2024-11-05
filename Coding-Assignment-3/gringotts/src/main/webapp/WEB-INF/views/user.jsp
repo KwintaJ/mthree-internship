@@ -6,69 +6,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard - Gringott's Bank</title>
-    <style>
-        body
+    <title>Gringott's Bank</title>
+    <script>
+        // Function to toggle the visibility of the menu
+        function toggleMenu(vaultId)
         {
-            font-family: 'Trebuchet MS', sans-serif;
-            background-color: #353535; /* Dark grey background */
-            color: #f0e68c; /* Gold color for text */
-            text-align: center;
-            padding: 50px;
+            const menu = document.getElementById("menu-" + vaultId);
+            if (menu.style.display === "none" || menu.style.display === "")
+            {
+                menu.style.display = "block";
+            }
+            else
+            {
+                menu.style.display = "none";
+            }
         }
-        h1
-        {
-            color: #B90E0A; /* Dark red */
-        }
-        .vault-container
-        {
-            display: flex; /* Use flexbox to arrange boxes horizontally */
-            flex-wrap: wrap; /* Allow wrapping to next line if necessary */
-            justify-content: center; /* Center the boxes */
-            gap: 20px; /* Space between boxes */
-            padding: 20px 0; /* Padding around the container */
-        }
-        .vault-box
-        {
-            background-color: #555; /* Lighter grey for boxes */
-            color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            width: 200px; /* Set width for the vault boxes */
-            text-align: left; /* Align text to the left */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add some shadow for depth */
-        }
-        .vault-box:hover
-        {
-            background-color: #666; /* Slightly lighter grey on hover */
-        }
-        footer
-        {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #ccc; /* Light grey for footer text */
-        }
-    </style>
+    </script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
     <h1>Welcome, <%= request.getAttribute("username") %>!</h1>
-    <p>You are successfully logged in as wizard <%= request.getAttribute("userId") %></p>
+    <p>You are successfully logged in.</p>
 
     <div class="vault-container">
+        <%-- Vault boxes with slide-down menus --%>
         <%
-            List<Vault> vaults = (List<Vault>)request.getAttribute("vaults");
+            List<Vault> vaults = (List<Vault>) request.getAttribute("vaults");
             if (vaults != null && !vaults.isEmpty())
             {
                 for (Vault vault : vaults)
                 {
         %>
-            <div class="vault-box" onclick="location.href='/vault/<%= vault.getVaultNum() %>'">
+            <div class="vault-box" onclick="toggleMenu(<%= vault.getVaultNum() %>)">
                 <h3>Vault Number <%= vault.getVaultNum() %></h3>
                 <p>Galleons: <%= vault.getGalleon() %></p>
                 <p>Sickles: <%= vault.getSickle() %></p>
                 <p>Knuts: <%= vault.getKnut() %></p>
+                
+                <!-- Slide-down menu for each vault -->
+                <div id="menu-<%= vault.getVaultNum() %>" class="vault-menu">
+                    <button onclick="location.href='/transfer/<%= vault.getVaultNum() %>'">Transfer</button>
+                    <button onclick="location.href='/exchange/<%= vault.getVaultNum() %>'">Exchange to GBP</button>
+                </div>
             </div>
         <%
                 }
@@ -77,11 +56,22 @@
             {
         %>
             <div class="vault-box">
-                <h3>No vaults belong to you.</h3>
+                <h3>No vaults found for this user.</h3>
             </div>
         <%
             }
         %>
+
+        <%-- Form to claim a new vault --%>
+        <form action="${pageContext.request.contextPath}/new-vault/<%= request.getAttribute("userId") %>" method="post" id="claimVaultForm" target="hiddenIframe">
+            <input type="hidden" name="_method" value="put">
+            <div class="claim-box" onclick="document.getElementById('claimVaultForm').submit();">
+                Claim New Vault
+            </div>
+        </form>
+
+        <%-- Hidden iframe for background form submission --%>
+        <iframe name="hiddenIframe" style="display:none;"></iframe>
     </div>
 
     <footer>

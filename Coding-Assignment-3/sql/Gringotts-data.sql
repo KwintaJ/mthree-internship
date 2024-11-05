@@ -51,5 +51,9 @@ INSERT INTO vault VALUES
     (456,      10000332,   0,        80001,  90),
     (457,      10001339,   123561,   2,      99);
 
+INSERT INTO wizard_seq VALUES (10003119);
+INSERT INTO vault_seq VALUES (541);
+INSERT INTO transaction_seq VALUES (2024001);
+
 -- to ensure proper database initialization execute this query
 -- SELECT name, vaultNum, galleon, sickle, knut FROM vault v INNER JOIN wizard w ON v.wizard = w.id ORDER BY galleon DESC;

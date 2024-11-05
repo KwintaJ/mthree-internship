@@ -30,3 +30,18 @@ CREATE TABLE transaction(
     transaction_time DATETIME(6),
     PRIMARY KEY(transaction_id)
 );
+
+DROP TABLE IF EXISTS wizard_seq;
+CREATE TABLE wizard_seq(
+    next_val BIGINT
+);
+
+DROP TABLE IF EXISTS vault_seq;
+CREATE TABLE vault_seq(
+    next_val BIGINT
+);
+
+DROP TABLE IF EXISTS transaction_seq;
+CREATE TABLE transaction_seq(
+    next_val BIGINT
+);
