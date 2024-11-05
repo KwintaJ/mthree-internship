@@ -9,6 +9,9 @@ import kwinta.gringotts.dao.TransactionRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+
+import java.lang.Math;
 
 import java.sql.Timestamp;
 
@@ -25,6 +28,8 @@ public class BankService
     @Autowired
     private TransactionRepository transactionRepository;
 
+    private static final double galleonToGBP = 4.93;
+
     public int balanceInKnuts(int id)
     {
         int balance = 0;
@@ -35,7 +40,7 @@ public class BankService
         return balance;
     }
 
-    private void simplify(int id)
+    public void simplify(int id)
     {
         Vault v = vaultRepository.findById(id).get();
 
@@ -48,6 +53,19 @@ public class BankService
         v.setGalleon(v.getGalleon() + sicklesToGalleons);
 
         vaultRepository.save(v);
+    }
+
+    public Double convert(int id)
+    {
+        simplify(id);
+        Vault v = vaultRepository.findById(id).get();
+
+        // simulation of foreign exchange market fluctuation
+        Random r = new Random();
+        double randomValue = 0.005 * r.nextDouble() - 0.0025;
+        double pounds = v.getGalleon() * (galleonToGBP + randomValue);
+        pounds *= 100; pounds = Math.round(pounds); pounds /= 100;
+        return new Double(pounds);
     }
 
     private void withdraw(int value, int id)

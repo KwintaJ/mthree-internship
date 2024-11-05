@@ -46,12 +46,14 @@ public class GringottsController
         if(!w.isPresent())
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 
-        List<Vault> v = vaultRepository.findVaultsByWizard(id);
-        return ResponseEntity.of(Optional.of(v));
+        List<Vault> vaults = vaultRepository.findVaultsByWizard(id);
+        for(Vault v : vaults)
+            bankService.simplify(v.getVaultNum());
+        return ResponseEntity.of(Optional.of(vaults));
     }
 
     @GetMapping("/{id}/transactions/{vn}")
-    public ResponseEntity<List<Transaction>> getWizardsVaults(@PathVariable("id") int id, 
+    public ResponseEntity<List<Transaction>> getWizardsTransactionFromVault(@PathVariable("id") int id, 
                                                               @PathVariable("vn") int vn)
     {
         Optional<Wizard> w = wizardRepository.findById(id);
@@ -101,6 +103,24 @@ public class GringottsController
 
         bankService.doTransfer(v1, v2, value);
         return ResponseEntity.of(vaultRepository.findById(v1));
+    }
+
+    @GetMapping("/{id}/convert/{vn}")
+    public ResponseEntity<Double> getGBPFromVault(@PathVariable("id") int id, 
+                                                   @PathVariable("vn") int vn)
+    {
+        Optional<Wizard> w = wizardRepository.findById(id);
+        if(!w.isPresent())
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
+        Optional<Vault> vault = vaultRepository.findById(vn);
+        if(!vault.isPresent())
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
+        if(vault.get().getWizard() != w.get().getId())
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+        return ResponseEntity.of(Optional.of(bankService.convert(vn)));
     }
 } 
     
