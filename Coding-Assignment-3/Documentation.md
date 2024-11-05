@@ -10,3 +10,4 @@ Documentation
 **0.4** - created rest controller  
 **0.5** - http method mapping  
 **0.6** - galleon to GBP conversion  
+**0.7** - JSP, PageController, dashboard  

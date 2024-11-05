@@ -38,18 +38,25 @@ public class GringottsController
     
     @Autowired
     private BankService bankService;
-        
-    @GetMapping("/{id}/vaults")
-    public ResponseEntity<List<Vault>> getWizardsVaults(@PathVariable("id") int id)
+    
+    public int loginCheck(String username, String password)
     {
-        Optional<Wizard> w = wizardRepository.findById(id);
+        Optional<Wizard> w = wizardRepository.findWizardByName(username);
         if(!w.isPresent())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return -1;
 
+        if(w.get().getPassword().equals(password))
+            return w.get().getId();;
+        
+        return -1;
+    }
+
+    public List<Vault> getWizardsVaults(int id)
+    {
         List<Vault> vaults = vaultRepository.findVaultsByWizard(id);
         for(Vault v : vaults)
             bankService.simplify(v.getVaultNum());
-        return ResponseEntity.of(Optional.of(vaults));
+        return vaults;
     }
 
     @GetMapping("/{id}/transactions/{vn}")

@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS wizard;
 CREATE TABLE wizard(
     id INT NOT NULL,
     name VARCHAR(255),
+    password VARCHAR(255),
     PRIMARY KEY(id)
 );
 
