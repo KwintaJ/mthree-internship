@@ -63,12 +63,48 @@ public class GringottsController
     }
 
     @GetMapping("/go-back")
-    public String home(Model model, @RequestParam int userId)
+    public String goBack(Model model, @RequestParam int userId)
     {
         try
         {
             model = bankService.checkUser(model, userId);
             return "user";
+        }
+        catch(GringottsException e)
+        {
+            return "fail-" + e.getMessage();
+        }
+        catch(Exception e)
+        {
+            return "fail-generic";
+        }
+    }
+
+    @GetMapping("/account/{id}")
+    public String showAccount(Model model, @PathVariable("id") int id)
+    {
+        try
+        {
+            model = bankService.checkUser(model, id);
+            return "account";
+        }
+        catch(GringottsException e)
+        {
+            return "fail-" + e.getMessage();
+        }
+        catch(Exception e)
+        {
+            return "fail-generic";
+        }
+    }
+
+    @GetMapping("/delete-account")
+    public String deleteWizard(Model model, @RequestParam int userId)
+    {
+        try
+        {
+            bankService.deleteUser(model, userId);
+            return "dashboard";
         }
         catch(GringottsException e)
         {

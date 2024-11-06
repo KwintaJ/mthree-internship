@@ -56,6 +56,20 @@ public class BankService
         return model;
     }
 
+    public void deleteUser(Model model, int id) 
+    throws WizardNotFound
+    {
+        Optional<Wizard> w = wizardRepository.findById(id);
+        if(!w.isPresent())
+            throw new WizardNotFound();
+
+        List<Vault> vaults = vaultRepository.findVaultsByWizard(id);
+        for(Vault v : vaults)
+            vaultRepository.deleteById(v.getVaultNum());
+
+        wizardRepository.deleteById(id);
+    }
+
     public Model checkNewWizard(Model model, String username, String password)
     throws LoginFailException
     {

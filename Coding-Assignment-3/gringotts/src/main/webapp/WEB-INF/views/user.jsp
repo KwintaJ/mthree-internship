@@ -26,7 +26,7 @@
 </head>
 <body>
     <h1>Welcome, <%= request.getAttribute("username") %>!</h1>
-    <p>You are successfully logged in.</p>
+    <p>We wish you wealth and prosperity</p>
 
     <!-- Upper Red Box with User Options -->
     <div class="user-options-box">

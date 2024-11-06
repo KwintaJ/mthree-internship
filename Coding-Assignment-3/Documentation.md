@@ -14,4 +14,5 @@ Documentation
 **0.8** - CSS styling, vault management, new vault claiming  
 **0.9** - structural changes, merging controllers into one, update README  
 **0.10** - transfer logic, exception handling  
-**0.11** - transaction history logic and page, new wizard registration  
+**0.11** - transaction history logic and page, new wizard registration    
+**1.0** - account details page, deleting account logic  
