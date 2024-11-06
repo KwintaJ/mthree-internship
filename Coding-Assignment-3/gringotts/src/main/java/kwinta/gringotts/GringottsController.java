@@ -1,72 +1,99 @@
 package kwinta.gringotts;
 
-import kwinta.gringotts.entities.Wizard;
-import kwinta.gringotts.entities.Vault;
-import kwinta.gringotts.entities.Transaction;
-import kwinta.gringotts.dao.WizardRepository;
-import kwinta.gringotts.dao.VaultRepository;
-import kwinta.gringotts.dao.TransactionRepository;
-import kwinta.gringotts.dao.BankService;
+import kwinta.gringotts.entities.*;
+import kwinta.gringotts.dao.*;
+import kwinta.gringotts.exceptions.*;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@Controller
 public class GringottsController 
 {
     @Autowired
     private WizardRepository wizardRepository;
-
     @Autowired
     private VaultRepository vaultRepository;
-
     @Autowired
     private TransactionRepository transactionRepository;
-
     @Autowired
     private BankService bankService;
-    
-    public int loginCheck(String username, String password)
-    {
-        Optional<Wizard> w = wizardRepository.findWizardByName(username);
-        if(!w.isPresent())
-            return -1;
 
-        if(w.get().getPassword().equals(password))
-            return w.get().getId();;
-        
-        return -1;
+    @GetMapping("/home")
+    public String home(Model model)
+    {
+        return "dashboard";
     }
 
-    public List<Vault> getWizardsVaults(int id)
+    @GetMapping("/sign-in")
+    public String login(Model model)
     {
-        List<Vault> vaults = vaultRepository.findVaultsByWizard(id);
-        for(Vault v : vaults)
-            bankService.simplify(v.getVaultNum());
-        return vaults;
+        return "login";
+    }
+
+    @GetMapping("/register")
+    public String register(Model model)
+    {
+        return "register";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model, @RequestParam String username, @RequestParam String password)
+    {
+        try
+        {
+            model = bankService.loginCheck(model, username, password);
+            return "user";
+        }
+        catch(LoginFailException e)
+        {
+            return "login-fail";
+        }
     }
 
     @PostMapping("/new-vault/{id}")
-    public void claimNewVault(@PathVariable("id") int id) {
-        Vault v = new Vault();
-        v.setWizard(id);
-        v.setGalleon(0);
-        v.setSickle(0);
-        v.setKnut(0);
-        vaultRepository.save(v);
+    public String claimNewVault(Model model, @PathVariable("id") int id)
+    {
+        try
+        {
+            model = bankService.claimNewVaultCheck(model, id);
+            return "user";
+        }
+        catch(TooManyVaultsException e)
+        {
+            return "fail";
+        }
+    }
+
+    @GetMapping("simplify-vault/{id}/{vn}")
+    public String simplifyVault(Model model, @PathVariable("id") int id, @PathVariable("vn") int vault)
+    {
+        try
+        {
+            model = bankService.simplify(model, id, vault);
+            return "user";
+        }
+        catch(RuntimeException e)
+        {
+            return "fail";
+        }
     }
 
     @GetMapping("/{id}/transactions/{vn}")

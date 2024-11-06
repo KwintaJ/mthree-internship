@@ -28,7 +28,18 @@
     <h1>Welcome, <%= request.getAttribute("username") %>!</h1>
     <p>You are successfully logged in.</p>
 
-    <div class="vault-container">
+    <!-- Upper Red Box with User Options -->
+    <div class="user-options-box">
+        <a href="/home" class="button">Sign Out</a>
+        <a href="/home" class="button">Wizarding Account Settings</a>
+        <a href="/home" class="button">Gringott's Account Details</a>
+    </div>
+
+    <!-- Main Golden Box containing Vaults -->
+    <div class="vaults-main-box">
+        <h2>Your Vaults</h2>
+        
+        <div class="vault-container">
         <%-- Vault boxes with slide-down menus --%>
         <%
             List<Vault> vaults = (List<Vault>) request.getAttribute("vaults");
@@ -45,7 +56,8 @@
                 
                 <!-- Slide-down menu for each vault -->
                 <div id="menu-<%= vault.getVaultNum() %>" class="vault-menu">
-                    <button onclick="location.href='/transfer/<%= vault.getVaultNum() %>'">Transfer</button>
+                    <button onclick="location.href='/transfer-page/<%= vault.getVaultNum() %>'">Transfer</button>
+                    <button onclick="location.href='/simplify-vault/<%= vault.getWizard() %>/<%= vault.getVaultNum() %>'">Simplify</button>
                     <button onclick="location.href='/exchange/<%= vault.getVaultNum() %>'">Exchange to GBP</button>
                 </div>
             </div>
@@ -58,21 +70,21 @@
             <div class="vault-box">
                 <h3>No vaults found for this user.</h3>
             </div>
-        <%
-            }
-        %>
+        <% 
+            } 
 
-        <%-- Form to claim a new vault --%>
-        <form action="${pageContext.request.contextPath}/new-vault/<%= request.getAttribute("userId") %>" method="post" id="claimVaultForm" target="hiddenIframe">
+            // Conditionally display the "Claim New Vault" box
+            if (vaults.size() < 3)
+            { 
+        %>
+        <form action="${pageContext.request.contextPath}/new-vault/<%= request.getAttribute("userId") %>" method="post" id="claimVaultForm">
             <input type="hidden" name="_method" value="put">
             <div class="claim-box" onclick="document.getElementById('claimVaultForm').submit();">
                 Claim New Vault
             </div>
         </form>
-
-        <%-- Hidden iframe for background form submission --%>
-        <iframe name="hiddenIframe" style="display:none;"></iframe>
-    </div>
+        <% } %>
+        </div>
 
     <footer>
         <p>&copy; 2024 Jan Kwinta.</p>

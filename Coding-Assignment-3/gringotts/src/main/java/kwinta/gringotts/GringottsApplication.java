@@ -1,15 +1,5 @@
 package kwinta.gringotts;
 
-import kwinta.gringotts.entities.Wizard;
-import kwinta.gringotts.entities.Vault;
-import kwinta.gringotts.entities.Transaction;
-import kwinta.gringotts.dao.WizardRepository;
-import kwinta.gringotts.dao.VaultRepository;
-import kwinta.gringotts.dao.TransactionRepository;
-
-import java.util.Optional;
-
-import org.springframework.context.ApplicationContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

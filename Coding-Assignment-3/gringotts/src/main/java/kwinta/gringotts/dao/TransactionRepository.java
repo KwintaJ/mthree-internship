@@ -1,7 +1,8 @@
 package kwinta.gringotts.dao;
 
-import java.util.List;
 import kwinta.gringotts.entities.Transaction;
+
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.jpa.repository.Query;
 

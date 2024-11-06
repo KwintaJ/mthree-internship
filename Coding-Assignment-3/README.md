@@ -19,8 +19,4 @@ of a bank app that implements features such as: bank transfers, currency exchang
 
 On wizarding currency
 ---------------------
-The wizarding currency of Great Britain consisted of three different coins;  
-in decreasing order of value, they were: Galleon, Sickle, and Knut. 
-They were gold, silver, and bronze, respectively. There were 17 Sickles in a Galleon, 
-and 29 Knuts in a Sickle, meaning there were 493 Knuts in a Galleon.  
-While exchanging to muggle (real world) money one Galleon is about 5 GBP.
+The wizarding currency of Great Britain consists of three different coins; in decreasing order of value, they are: Galleon, Sickle, and Knut. They are gold, silver, and bronze, respectively. There are 17 Sickles in a Galleon and 29 Knuts in a Sickle, meaning there are 493 Knuts in a Galleon. While exchanging to muggle (real world) money one Galleon is about 5 GBP.

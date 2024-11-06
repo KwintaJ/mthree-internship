@@ -1,0 +1,17 @@
+package kwinta.gringotts.exceptions;
+
+public class LoginFailException extends RuntimeException
+{
+    private String errMsg;
+
+    public LoginFailException(String errMsg)
+    {
+        this.errMsg = errMsg;
+    }
+
+    @Override
+    public String getMessage()
+    {
+        return errMsg;
+    }
+}

@@ -1,8 +1,8 @@
 package kwinta.gringotts.dao;
 
-import java.util.Optional;
-
 import kwinta.gringotts.entities.Wizard;
+
+import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.jpa.repository.Query;
 
