@@ -53,6 +53,7 @@ public class GringottsController
         }
         catch(GringottsException e)
         {
+            model.addAttribute("userId", userId);
             return "fail-" + e.getMessage();
         }
         catch(Exception e)
@@ -89,6 +90,7 @@ public class GringottsController
         }
         catch(GringottsException e)
         {
+            model.addAttribute("userId", id);
             return "fail-" + e.getMessage();
         }
         catch(Exception e)
@@ -125,6 +127,7 @@ public class GringottsController
         }
         catch(GringottsException e)
         {
+            model.addAttribute("userId", id);
             return "fail-" + e.getMessage();
         }
         catch(Exception e)
@@ -143,6 +146,7 @@ public class GringottsController
         }
         catch(GringottsException e)
         {
+            model.addAttribute("userId", id);
             return "fail-" + e.getMessage();
         }
         catch(Exception e)
@@ -161,6 +165,7 @@ public class GringottsController
         }
         catch(GringottsException e)
         {
+            model.addAttribute("userId", userId);
             return "fail-" + e.getMessage();
         }
         catch(Exception e)
@@ -179,6 +184,7 @@ public class GringottsController
         }
         catch(GringottsException e)
         {
+            model.addAttribute("userId", userId);
             return "fail-" + e.getMessage();
         }
         catch(Exception e)
@@ -197,6 +203,7 @@ public class GringottsController
         }
         catch(GringottsException e)
         {
+            model.addAttribute("userId", userId);
             return "fail-" + e.getMessage();
         }
         catch(Exception e)
@@ -217,6 +224,7 @@ public class GringottsController
         }
         catch(GringottsException e)
         {
+            model.addAttribute("userId", userId);
             return "fail-" + e.getMessage();
         }
         catch(Exception e)
@@ -235,6 +243,7 @@ public class GringottsController
         }
         catch(GringottsException e)
         {
+            model.addAttribute("userId", userId);
             return "fail-" + e.getMessage();
         }
         catch(Exception e)

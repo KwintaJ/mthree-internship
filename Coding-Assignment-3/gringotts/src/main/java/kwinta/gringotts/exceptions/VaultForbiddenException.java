@@ -8,4 +8,10 @@ public class VaultForbiddenException extends GringottsException
     {
         this.errMsg = "vault-forbidden";
     }
+
+    @Override
+    public String getMessage()
+    {
+        return errMsg;
+    }
 }

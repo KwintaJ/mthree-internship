@@ -8,4 +8,10 @@ public class TooManyVaultsException extends GringottsException
     {
         this.errMsg = "too-many-vaults";
     }
+
+    @Override
+    public String getMessage()
+    {
+        return errMsg;
+    }
 }

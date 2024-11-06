@@ -8,4 +8,10 @@ public class VaultNotFound extends GringottsException
     {
         this.errMsg = "vault-not-found";
     }
+
+    @Override
+    public String getMessage()
+    {
+        return errMsg;
+    }
 }

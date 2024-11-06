@@ -185,11 +185,15 @@ public class BankService
         if(vault.get().getWizard() != w.get().getId())
             throw new VaultForbiddenException();
         
+        Integer iGal;
+        Integer iSic;
+        Integer iKnt;
         try
         {
-            Integer iGal = new Integer(gal);
-            Integer iSic = new Integer(sic);
-            Integer iKnt = new Integer(knt);
+            iGal = new Integer(gal);
+            iSic = new Integer(sic);
+            iKnt = new Integer(knt);
+        }
         catch(NumberFormatException e)
         {
             throw new BadTransferException("bad-value");

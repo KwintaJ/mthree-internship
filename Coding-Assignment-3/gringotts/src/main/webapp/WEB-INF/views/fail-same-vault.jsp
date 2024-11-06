@@ -13,7 +13,12 @@
     <br>
     <a href="/home" class="button">Home</a>
     <a href="/sign-in" class="button">Sign In</a>
-
+    <div class="form-container">
+        <form action="/go-back" method="get">
+            <input type="hidden" name="userId" value="<%= request.getAttribute("userId") %>">
+            <input type="submit" class="button" value="Back">
+        </form>
+    </div>
     <footer>
         <p>&copy; 2024 Jan Kwinta.</p>
     </footer>

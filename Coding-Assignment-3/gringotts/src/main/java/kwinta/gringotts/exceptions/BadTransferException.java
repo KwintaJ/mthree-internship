@@ -8,4 +8,10 @@ public class BadTransferException extends GringottsException
     {
         this.errMsg = errMsg;
     }
+
+    @Override
+    public String getMessage()
+    {
+        return errMsg;
+    }
 }

@@ -8,4 +8,10 @@ public class WizardNotFound extends GringottsException
     {
         this.errMsg = "wizard-not-found";
     }
+
+    @Override
+    public String getMessage()
+    {
+        return errMsg;
+    }
 }
