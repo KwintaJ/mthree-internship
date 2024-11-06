@@ -4,23 +4,13 @@ import kwinta.gringotts.entities.*;
 import kwinta.gringotts.dao.*;
 import kwinta.gringotts.exceptions.*;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.ui.Model;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -54,12 +44,48 @@ public class GringottsController
         return "register";
     }
 
+    @PostMapping("/new-user")
+    public String newUser(Model model, @RequestParam String username, @RequestParam String password)
+    {
+        try
+        {
+            model = bankService.checkNewWizard(model, username, password);
+            return "user";
+        }
+        catch(GringottsException e)
+        {
+            return "fail-" + e.getMessage();
+        }
+        catch(Exception e)
+        {
+            return "fail-generic";
+        }
+    }
+
+    @GetMapping("/go-back")
+    public String home(Model model, @RequestParam int userId)
+    {
+        try
+        {
+            model = bankService.checkUser(model, userId);
+            return "user";
+        }
+        catch(GringottsException e)
+        {
+            return "fail-" + e.getMessage();
+        }
+        catch(Exception e)
+        {
+            return "fail-generic";
+        }
+    }
+
     @GetMapping("/login")
     public String login(Model model, @RequestParam String username, @RequestParam String password)
     {
         try
         {
-            model = bankService.loginCheck(model, username, password);
+            model = bankService.checkLogin(model, username, password);
             return "user";
         }
         catch(GringottsException e)
@@ -77,7 +103,7 @@ public class GringottsController
     {
         try
         {
-            model = bankService.claimNewVaultCheck(model, id);
+            model = bankService.checkNewVaultClaim(model, id);
             return "user";
         }
         catch(GringottsException e)
@@ -132,7 +158,7 @@ public class GringottsController
         try
         {
             model = bankService.getTransactions(model, userId, vaultNum);
-            return "transactions";
+            return "transaction-history";
         }
         catch(GringottsException e)
         {
@@ -162,7 +188,7 @@ public class GringottsController
         }
     }
 
-    @GetMapping("/transfer-go")
+    @PostMapping("/transfer-go")
     public String transferGo(Model model, @RequestParam String recipient, @RequestParam int v2,
                             @RequestParam int gal, @RequestParam int sic, @RequestParam int knt,
                             @RequestParam int userId, @RequestParam int v1)
@@ -180,6 +206,6 @@ public class GringottsController
         {
             return "fail-generic";
         }
-    }   
+    }
 } 
     

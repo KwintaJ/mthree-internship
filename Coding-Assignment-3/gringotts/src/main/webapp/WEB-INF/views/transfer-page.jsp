@@ -10,7 +10,7 @@
 <body>
     <h1>Transfer gold to other Wizards</h1>
     <div class="form-container">
-        <form action="/transfer-go" method="get">
+        <form action="/transfer-go" method="post">
             <label for="username">Recipients's full name:</label><br>
             <input type="text" id="recipient" name="recipient" required><br><br>
             <label for="password">Recipient's vault number:</label><br>

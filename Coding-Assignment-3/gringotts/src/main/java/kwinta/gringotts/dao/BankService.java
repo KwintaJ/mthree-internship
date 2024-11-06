@@ -11,8 +11,8 @@ import java.lang.Math;
 import java.sql.Timestamp;
 
 import org.springframework.ui.Model;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -27,7 +27,8 @@ public class BankService
 
     private static final double galleonToGBP = 4.93;
 
-    public Model loginCheck(Model model, String username, String password) throws LoginFailException
+    public Model checkLogin(Model model, String username, String password) 
+    throws LoginFailException
     {
         Optional<Wizard> w = wizardRepository.findWizardByName(username);
         if(!w.isPresent())
@@ -42,36 +43,40 @@ public class BankService
         return model;
     }
 
-    public Model simplify(Model model, int id, int vn) throws WizardNotFound, VaultNotFound, VaultForbiddenException
+    public Model checkUser(Model model, int id) 
+    throws WizardNotFound
     {
         Optional<Wizard> w = wizardRepository.findById(id);
         if(!w.isPresent())
             throw new WizardNotFound();
-        
-        Optional<Vault> vault = vaultRepository.findById(vn);
-        if(!vault.isPresent())
-            throw new VaultNotFound();
-
-        if(vault.get().getWizard() != w.get().getId())
-            throw new VaultForbiddenException();
-
-        Vault v = vault.get();
-        int knutsToSickles = v.getKnut() / 29;
-        v.setKnut(v.getKnut() - (knutsToSickles * 29));
-        v.setSickle(v.getSickle() + knutsToSickles);
-        int sicklesToGalleons = v.getSickle() / 17;
-        v.setSickle(v.getSickle() - (sicklesToGalleons * 17));
-        v.setGalleon(v.getGalleon() + sicklesToGalleons);
-
-        vaultRepository.save(v);
 
         model.addAttribute("username", w.get().getName());
-        model.addAttribute("userId", id);
-        model.addAttribute("vaults", vaultRepository.findVaultsByWizard(id));
+        model.addAttribute("userId", w.get().getId());
+        model.addAttribute("vaults", vaultRepository.findVaultsByWizard(w.get().getId()));
         return model;
     }
 
-    public Model claimNewVaultCheck(Model model, int id) throws WizardNotFound, TooManyVaultsException
+    public Model checkNewWizard(Model model, String username, String password)
+    throws LoginFailException
+    {
+        Optional<Wizard> a = wizardRepository.findWizardByName(username);
+        if(a.isPresent())
+            throw new LoginFailException("name-used");
+
+        Wizard w = new Wizard();
+        w.setName(username);
+        w.setPassword(password);
+        wizardRepository.save(w);
+
+        Optional<Wizard> f = wizardRepository.findWizardByName(username);
+        model.addAttribute("username", username);
+        model.addAttribute("userId", f.get().getId());
+        model.addAttribute("vaults", vaultRepository.findVaultsByWizard(f.get().getId()));
+        return model;
+    }
+
+    public Model checkNewVaultClaim(Model model, int id) 
+    throws WizardNotFound, TooManyVaultsException
     {
         Optional<Wizard> w = wizardRepository.findById(id);
         if(!w.isPresent())
@@ -93,7 +98,8 @@ public class BankService
         return model;
     }
 
-    public Model convert(Model model, int id, int vn) throws WizardNotFound, VaultNotFound, VaultForbiddenException
+    public Model convert(Model model, int id, int vn) 
+    throws WizardNotFound, VaultNotFound, VaultForbiddenException
     {    
         Optional<Wizard> w = wizardRepository.findById(id);
         if(!w.isPresent())
@@ -120,7 +126,8 @@ public class BankService
         return model;
     }
 
-    public Model getTransactions(Model model, int id, int vn) throws WizardNotFound, VaultNotFound, VaultForbiddenException
+    public Model getTransactions(Model model, int id, int vn)
+    throws WizardNotFound, VaultNotFound, VaultForbiddenException
     {
         Optional<Wizard> w = wizardRepository.findById(id);
         if(!w.isPresent())
@@ -136,13 +143,15 @@ public class BankService
         List<Transaction> tl = transactionRepository.getVaultsTransactions(vn);
 
         model.addAttribute("transactions", tl);
+        model.addAttribute("vaultNum", vn);
         model.addAttribute("username", w.get().getName());
         model.addAttribute("userId", id);
         model.addAttribute("vaults", vaultRepository.findVaultsByWizard(id));
         return model;
     }
 
-    public Model checkTransferInit(Model model, int id, int vn) throws WizardNotFound, VaultNotFound, VaultForbiddenException
+    public Model checkTransferInit(Model model, int id, int vn)
+    throws WizardNotFound, VaultNotFound, VaultForbiddenException
     {
         Optional<Wizard> w = wizardRepository.findById(id);
         if(!w.isPresent())
@@ -161,11 +170,11 @@ public class BankService
     }
 
     @Transactional
-    public Model doTransfer(Model model, int userId, String recipient, int v1,
-                            int v2, int gal, int sic, int knt) throws WizardNotFound, 
-                            VaultNotFound, VaultForbiddenException, BadTransferException
+    public Model doTransfer(Model model, int id, String recipient, int v1,
+                            int v2, int gal, int sic, int knt) 
+    throws WizardNotFound, VaultNotFound, VaultForbiddenException, BadTransferException
     {
-        Optional<Wizard> w = wizardRepository.findById(userId);
+        Optional<Wizard> w = wizardRepository.findById(id);
         if(!w.isPresent())
             throw new WizardNotFound();
 
@@ -205,15 +214,36 @@ public class BankService
         transactionRepository.save(t);
 
         model.addAttribute("username", w.get().getName());
-        model.addAttribute("userId", userId);
-        model.addAttribute("vaults", vaultRepository.findVaultsByWizard(userId));
+        model.addAttribute("userId", id);
+        model.addAttribute("vaults", vaultRepository.findVaultsByWizard(id));
+        return model;
+    }
+
+    public Model simplify(Model model, int id, int vn) 
+    throws WizardNotFound, VaultNotFound, VaultForbiddenException
+    {
+        Optional<Wizard> w = wizardRepository.findById(id);
+        if(!w.isPresent())
+            throw new WizardNotFound();
+        
+        Optional<Vault> vault = vaultRepository.findById(vn);
+        if(!vault.isPresent())
+            throw new VaultNotFound();
+
+        if(vault.get().getWizard() != w.get().getId())
+            throw new VaultForbiddenException();
+
+        pSimplify(vn);
+
+        model.addAttribute("username", w.get().getName());
+        model.addAttribute("userId", id);
+        model.addAttribute("vaults", vaultRepository.findVaultsByWizard(id));
         return model;
     }
     
-
-    private void pSimplify(int vault)
+    private void pSimplify(int vn)
     {
-        Vault v = vaultRepository.findById(vault).get();
+        Vault v = vaultRepository.findById(vn).get();
 
         int knutsToSickles = v.getKnut() / 29;
         v.setKnut(v.getKnut() - (knutsToSickles * 29));
@@ -226,35 +256,35 @@ public class BankService
         vaultRepository.save(v);
     }
 
-    private int balanceInKnuts(int id)
+    private int balanceInKnuts(int vn)
     {
         int balance = 0;
-        Vault v = vaultRepository.findById(id).get();
+        Vault v = vaultRepository.findById(vn).get();
         balance += 493 * v.getGalleon();
         balance += 29 * v.getSickle();
         balance += v.getKnut();
         return balance;
     }
 
-    private void withdraw(int value, int id)
+    private void withdraw(int value, int vn)
     {
-        Vault v = vaultRepository.findById(id).get();
-        int b = balanceInKnuts(id);
+        Vault v = vaultRepository.findById(vn).get();
+        int b = balanceInKnuts(vn);
 
         v.setGalleon(0);
         v.setSickle(0);
         v.setKnut(b - value);
 
         vaultRepository.save(v);
-        pSimplify(id);
+        pSimplify(vn);
     }
 
-    private void deposit(int value, int id)
+    private void deposit(int value, int vn)
     {
-        Vault v = vaultRepository.findById(id).get();
+        Vault v = vaultRepository.findById(vn).get();
         v.setKnut(v.getKnut() + value);
 
         vaultRepository.save(v);
-        pSimplify(id);
+        pSimplify(vn);
     }
 }

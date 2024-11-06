@@ -33,7 +33,7 @@
         <a href="/home" class="button">Sign Out</a>
         <a href="/account/<%= request.getAttribute("userId") %>" class="button">Gringott's Account Details</a>
     </div>
-
+    
     <!-- Main Golden Box containing Vaults -->
     <div class="vaults-main-box">
         <h2>Your Vaults</h2>
@@ -107,7 +107,7 @@
         <div class="information-box">
             <!-- Conditional display for exchange value -->
                 <div class="exchange-result">
-                    <p>Galleons in vault #<%= exchangedVaultNum %> are worth <%= exchangeValue %> GBP.</p>
+                    <p>Galleons in vault number <%= exchangedVaultNum %> are worth <%= exchangeValue %> GBP.</p>
                 </div>
         </div>
     <% } %>

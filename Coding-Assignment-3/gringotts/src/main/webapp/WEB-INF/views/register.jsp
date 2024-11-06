@@ -10,13 +10,11 @@
 <body>
     <h1>Register as a new Wizard</h1>
     <div class="form-container">
-        <form action="/register" method="post">
+        <form action="/new-user" method="post">
             <label for="username">Wizard's full name:</label><br>
             <input type="text" id="username" name="username" required><br><br>
             <label for="password">Secret key:</label><br>
             <input type="password" id="password" name="password" required><br><br>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required><br><br>
             <input type="submit" class="button" value="Register">
         </form>
     </div>

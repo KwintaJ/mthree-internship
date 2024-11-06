@@ -64,6 +64,22 @@ h1
 {
     color: #353535; /* Dark grey for header */
 }
+.vaults-main-box button
+{
+    background-color: #B90E0A; /* Dark red */
+    color: #f0e68c; /* Gold */
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+}
+.vaults-main-box button:hover
+{
+    background-color: #A52A2A; /* Lighter dark red on hover */
+    transition: background-color 0.3s ease;
+}
 .vault-container
 {
     display: flex; /* Use flexbox to arrange boxes horizontally */
