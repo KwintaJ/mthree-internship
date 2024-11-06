@@ -32,6 +32,7 @@
     <div class="user-options-box">
         <a href="/home" class="button">Sign Out</a>
         <a href="/account/<%= request.getAttribute("userId") %>" class="button">Gringott's Account Details</a>
+        <a href="/refresh/<%= request.getAttribute("userId") %>" class="button">Refresh</a>
     </div>
     
     <!-- Main Golden Box containing Vaults -->

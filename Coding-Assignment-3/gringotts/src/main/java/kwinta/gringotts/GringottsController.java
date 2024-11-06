@@ -62,6 +62,25 @@ public class GringottsController
         }
     }
 
+    @GetMapping("/refresh/{id}")
+    public String refresh(Model model, @PathVariable("id") int id)
+    {
+        try
+        {
+            model = bankService.checkUser(model, id);
+            return "user";
+        }
+        catch(GringottsException e)
+        {
+            model.addAttribute("userId", id);
+            return "fail-" + e.getMessage();
+        }
+        catch(Exception e)
+        {
+            return "fail-generic";
+        }
+    }
+
     @GetMapping("/login")
     public String login(Model model, @RequestParam String username, @RequestParam String password)
     {

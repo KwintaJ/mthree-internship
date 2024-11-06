@@ -18,3 +18,4 @@ Documentation
 **1.0** - account details page, deleting account logic  
 **1.1** - error pages  
 **1.2** - exception handling update   
+**1.3** - refresh button   
