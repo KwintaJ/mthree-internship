@@ -37,6 +37,18 @@ h1
 {
     background-color: #A52A2A;
 }
+.information-box
+{
+    background-color: #666666;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    display: inline-flex;
+    justify-content: center;
+    gap: 15px;
+    max-width: 800px;
+    min-width: 800px;
+}
 .vaults-main-box
 {
     background-color: #B8860B; /* Golden box */
@@ -45,7 +57,8 @@ h1
     max-width: 800px;
     min-width: 800px;
     margin: 0 auto;
-    min-height: 450px;
+    min-height: 520px;
+    margin-bottom: 20px;
 }
 .vaults-main-box h2
 {
@@ -145,6 +158,18 @@ h1
     padding: 20px;
     border-radius: 10px;
     display: inline-block;
+}
+.close
+{
+    color: #f0e68c;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close:hover
+{
+    color: #A52A2A;
 }
 footer
 {

@@ -9,9 +9,10 @@
 </head>
 <body>
     <h1>Login failed!</h1>
-    <p>Please try again or register new Wizard</p>
+    <p>Wrong password. Please try again</p>
     <br>
     <a href="/home" class="button">Home</a>
+    <a href="/sign-in" class="button">Sign In</a>
 
     <footer>
         <p>&copy; 2024 Jan Kwinta.</p>

@@ -1,10 +1,10 @@
 package kwinta.gringotts.exceptions;
 
-public class LoginFailException extends GringottsException
+public class BadTransferException extends GringottsException
 {
     private String errMsg;
 
-    public LoginFailException(String errMsg)
+    public BadTransferException(String errMsg)
     {
         this.errMsg = errMsg;
     }

@@ -12,4 +12,5 @@ Documentation
 **0.6** - galleon to GBP conversion  
 **0.7** - JSP, PageController, dashboard  
 **0.8** - CSS styling, vault management, new vault claiming  
-**0.9** - structural changes, merging controllers into one, update README
+**0.9** - structural changes, merging controllers into one, update README  
+**0.10** - transfer logic, exception handling  

@@ -62,9 +62,13 @@ public class GringottsController
             model = bankService.loginCheck(model, username, password);
             return "user";
         }
-        catch(LoginFailException e)
+        catch(GringottsException e)
         {
-            return "login-fail";
+            return "fail-" + e.getMessage();
+        }
+        catch(Exception e)
+        {
+            return "fail-generic";
         }
     }
 
@@ -76,9 +80,13 @@ public class GringottsController
             model = bankService.claimNewVaultCheck(model, id);
             return "user";
         }
-        catch(TooManyVaultsException e)
+        catch(GringottsException e)
         {
-            return "fail";
+            return "fail-" + e.getMessage();
+        }
+        catch(Exception e)
+        {
+            return "fail-generic";
         }
     }
 
@@ -90,81 +98,88 @@ public class GringottsController
             model = bankService.simplify(model, id, vault);
             return "user";
         }
-        catch(RuntimeException e)
+        catch(GringottsException e)
         {
-            return "fail";
+            return "fail-" + e.getMessage();
+        }
+        catch(Exception e)
+        {
+            return "fail-generic";
         }
     }
 
-    @GetMapping("/{id}/transactions/{vn}")
-    public ResponseEntity<List<Transaction>> getWizardsTransactionFromVault(@PathVariable("id") int id, 
-                                                              @PathVariable("vn") int vn)
+    @GetMapping("/exchange")
+    public String exchange(Model model, @RequestParam int userId, @RequestParam int vaultNum)
     {
-        Optional<Wizard> w = wizardRepository.findById(id);
-        if(!w.isPresent())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-
-        Optional<Vault> vault = vaultRepository.findById(vn);
-        if(!vault.isPresent())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-
-        if(vault.get().getWizard() != w.get().getId())
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-
-        List<Transaction> tl = transactionRepository.getVaultsTransactions(vn);
-        return ResponseEntity.of(Optional.of(tl));
+        try
+        {
+            model = bankService.convert(model, userId, vaultNum);
+            return "user";
+        }
+        catch(GringottsException e)
+        {
+            return "fail-" + e.getMessage();
+        }
+        catch(Exception e)
+        {
+            return "fail-generic";
+        }
     }
 
-    @PutMapping("/{id}/transfer/from/{v1}/to/{v2}/{value}")
-    public ResponseEntity<Vault> transfer(@PathVariable("id") int id, 
-                                          @PathVariable("v1") int v1, 
-                                          @PathVariable("v2") int v2, 
-                                          @PathVariable("value") int value)
+    @GetMapping("/transactions")
+    public String getVaultsTransactions(Model model, @RequestParam int userId, @RequestParam int vaultNum)
     {
-        if(v1 == v2)
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-
-        if(value <= 0)
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-
-        Optional<Wizard> w = wizardRepository.findById(id);
-        if(!w.isPresent())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-
-        Optional<Vault> vault1 = vaultRepository.findById(v1);
-        if(!vault1.isPresent())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-
-        if(vault1.get().getWizard() != w.get().getId())
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-
-        if(bankService.balanceInKnuts(v1) < value)
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-
-        Optional<Vault> vault2 = vaultRepository.findById(v2);
-        if(!vault2.isPresent())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-
-        bankService.doTransfer(v1, v2, value);
-        return ResponseEntity.of(vaultRepository.findById(v1));
+        try
+        {
+            model = bankService.getTransactions(model, userId, vaultNum);
+            return "transactions";
+        }
+        catch(GringottsException e)
+        {
+            return "fail-" + e.getMessage();
+        }
+        catch(Exception e)
+        {
+            return "fail-generic";
+        }
     }
 
-    @GetMapping("/{id}/convert/{vn}")
-    public ResponseEntity<Double> getGBPFromVault(@PathVariable("id") int id, 
-                                                   @PathVariable("vn") int vn)
+    @GetMapping("/transfer-init")
+    public String transferInit(Model model, @RequestParam int userId, @RequestParam int vaultNum)
     {
-        Optional<Wizard> w = wizardRepository.findById(id);
-        if(!w.isPresent())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-
-        Optional<Vault> vault = vaultRepository.findById(vn);
-        if(!vault.isPresent())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-
-        if(vault.get().getWizard() != w.get().getId())
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-
-        return ResponseEntity.of(Optional.of(bankService.convert(vn)));
+        try
+        {
+            model = bankService.checkTransferInit(model, userId, vaultNum);
+            return "transfer-page";
+        }
+        catch(GringottsException e)
+        {
+            return "fail-" + e.getMessage();
+        }
+        catch(Exception e)
+        {
+            return "fail-generic";
+        }
     }
+
+    @GetMapping("/transfer-go")
+    public String transferGo(Model model, @RequestParam String recipient, @RequestParam int v2,
+                            @RequestParam int gal, @RequestParam int sic, @RequestParam int knt,
+                            @RequestParam int userId, @RequestParam int v1)
+    {
+        try
+        {
+            model = bankService.doTransfer(model, userId, recipient, v1, v2, gal, sic, knt);
+            return "user";
+        }
+        catch(GringottsException e)
+        {
+            return "fail-" + e.getMessage();
+        }
+        catch(Exception e)
+        {
+            return "fail-generic";
+        }
+    }   
 } 
     

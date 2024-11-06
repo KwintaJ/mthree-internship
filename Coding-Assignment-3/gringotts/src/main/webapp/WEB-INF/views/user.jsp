@@ -31,8 +31,7 @@
     <!-- Upper Red Box with User Options -->
     <div class="user-options-box">
         <a href="/home" class="button">Sign Out</a>
-        <a href="/home" class="button">Wizarding Account Settings</a>
-        <a href="/home" class="button">Gringott's Account Details</a>
+        <a href="/account/<%= request.getAttribute("userId") %>" class="button">Gringott's Account Details</a>
     </div>
 
     <!-- Main Golden Box containing Vaults -->
@@ -43,6 +42,9 @@
         <%-- Vault boxes with slide-down menus --%>
         <%
             List<Vault> vaults = (List<Vault>) request.getAttribute("vaults");
+            Double exchangeValue = (Double) request.getAttribute("exchangeValue");
+            Integer exchangedVaultNum = (Integer) request.getAttribute("exchangedVaultNum");
+
             if (vaults != null && !vaults.isEmpty())
             {
                 for (Vault vault : vaults)
@@ -56,9 +58,22 @@
                 
                 <!-- Slide-down menu for each vault -->
                 <div id="menu-<%= vault.getVaultNum() %>" class="vault-menu">
-                    <button onclick="location.href='/transfer-page/<%= vault.getVaultNum() %>'">Transfer</button>
+                    <form action="${pageContext.request.contextPath}/transfer-init" method="get">
+                        <input type="hidden" name="userId" value="<%= vault.getWizard() %>">
+                        <input type="hidden" name="vaultNum" value="<%= vault.getVaultNum() %>">
+                        <button type="submit">Transfer</button>
+                    </form>
                     <button onclick="location.href='/simplify-vault/<%= vault.getWizard() %>/<%= vault.getVaultNum() %>'">Simplify</button>
-                    <button onclick="location.href='/exchange/<%= vault.getVaultNum() %>'">Exchange to GBP</button>
+                    <form action="${pageContext.request.contextPath}/exchange" method="get">
+                        <input type="hidden" name="userId" value="<%= vault.getWizard() %>">
+                        <input type="hidden" name="vaultNum" value="<%= vault.getVaultNum() %>">
+                        <button type="submit">Exchange to GBP</button>
+                    </form>
+                    <form action="${pageContext.request.contextPath}/transactions" method="get">
+                        <input type="hidden" name="userId" value="<%= vault.getWizard() %>">
+                        <input type="hidden" name="vaultNum" value="<%= vault.getVaultNum() %>">
+                        <button type="submit">Transaction history</button>
+                    </form>
                 </div>
             </div>
         <%
@@ -84,7 +99,19 @@
             </div>
         </form>
         <% } %>
+
         </div>
+    </div>
+
+    <% if (exchangeValue != null && exchangedVaultNum != null) { %>
+        <div class="information-box">
+            <!-- Conditional display for exchange value -->
+                <div class="exchange-result">
+                    <p>Galleons in vault #<%= exchangedVaultNum %> are worth <%= exchangeValue %> GBP.</p>
+                </div>
+        </div>
+    <% } %>
+
 
     <footer>
         <p>&copy; 2024 Jan Kwinta.</p>

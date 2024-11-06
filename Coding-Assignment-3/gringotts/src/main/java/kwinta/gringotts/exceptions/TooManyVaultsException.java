@@ -1,16 +1,11 @@
 package kwinta.gringotts.exceptions;
 
-public class TooManyVaultsException extends RuntimeException
+public class TooManyVaultsException extends GringottsException
 {
     private String errMsg;
 
     public TooManyVaultsException()
     {
-    }
-
-    @Override
-    public String getMessage()
-    {
-        return "too-many-vaults";
+        this.errMsg = "too-many-vaults";
     }
 }
