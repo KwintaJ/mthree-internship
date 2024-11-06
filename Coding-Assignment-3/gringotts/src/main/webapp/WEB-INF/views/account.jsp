@@ -46,7 +46,7 @@
         </div>
     
         <div class="form-container">
-            <form action="/delete-account" method="get">
+            <form action="/delete-account" method="post">
                 <input type="hidden" name="userId" value="<%= request.getAttribute("userId") %>">
                 <input type="submit" class="button" value="Delete Account">
             </form>

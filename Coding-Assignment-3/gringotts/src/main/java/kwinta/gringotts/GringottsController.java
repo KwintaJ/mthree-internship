@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -44,24 +43,6 @@ public class GringottsController
         return "register";
     }
 
-    @PostMapping("/new-user")
-    public String newUser(Model model, @RequestParam String username, @RequestParam String password)
-    {
-        try
-        {
-            model = bankService.checkNewWizard(model, username, password);
-            return "user";
-        }
-        catch(GringottsException e)
-        {
-            return "fail-" + e.getMessage();
-        }
-        catch(Exception e)
-        {
-            return "fail-generic";
-        }
-    }
-
     @GetMapping("/go-back")
     public String goBack(Model model, @RequestParam int userId)
     {
@@ -69,42 +50,6 @@ public class GringottsController
         {
             model = bankService.checkUser(model, userId);
             return "user";
-        }
-        catch(GringottsException e)
-        {
-            return "fail-" + e.getMessage();
-        }
-        catch(Exception e)
-        {
-            return "fail-generic";
-        }
-    }
-
-    @GetMapping("/account/{id}")
-    public String showAccount(Model model, @PathVariable("id") int id)
-    {
-        try
-        {
-            model = bankService.checkUser(model, id);
-            return "account";
-        }
-        catch(GringottsException e)
-        {
-            return "fail-" + e.getMessage();
-        }
-        catch(Exception e)
-        {
-            return "fail-generic";
-        }
-    }
-
-    @GetMapping("/delete-account")
-    public String deleteWizard(Model model, @RequestParam int userId)
-    {
-        try
-        {
-            bankService.deleteUser(model, userId);
-            return "dashboard";
         }
         catch(GringottsException e)
         {
@@ -132,7 +77,43 @@ public class GringottsController
         {
             return "fail-generic";
         }
+    }   
+
+    @GetMapping("/account/{id}")
+    public String showAccount(Model model, @PathVariable("id") int id)
+    {
+        try
+        {
+            model = bankService.checkUser(model, id);
+            return "account";
+        }
+        catch(GringottsException e)
+        {
+            return "fail-" + e.getMessage();
+        }
+        catch(Exception e)
+        {
+            return "fail-generic";
+        }
     }
+
+    @PostMapping("/new-user")
+    public String newUser(Model model, @RequestParam String username, @RequestParam String password)
+    {
+        try
+        {
+            model = bankService.checkNewWizard(model, username, password);
+            return "user";
+        }
+        catch(GringottsException e)
+        {
+            return "fail-" + e.getMessage();
+        }
+        catch(Exception e)
+        {
+            return "fail-generic";
+        }
+    } 
 
     @PostMapping("/new-vault/{id}")
     public String claimNewVault(Model model, @PathVariable("id") int id)
@@ -226,13 +207,31 @@ public class GringottsController
 
     @PostMapping("/transfer-go")
     public String transferGo(Model model, @RequestParam String recipient, @RequestParam int v2,
-                            @RequestParam int gal, @RequestParam int sic, @RequestParam int knt,
+                            @RequestParam String gal, @RequestParam String sic, @RequestParam String knt,
                             @RequestParam int userId, @RequestParam int v1)
     {
         try
         {
             model = bankService.doTransfer(model, userId, recipient, v1, v2, gal, sic, knt);
             return "user";
+        }
+        catch(GringottsException e)
+        {
+            return "fail-" + e.getMessage();
+        }
+        catch(Exception e)
+        {
+            return "fail-generic";
+        }
+    }
+
+    @PostMapping("/delete-account")
+    public String deleteWizard(Model model, @RequestParam int userId)
+    {
+        try
+        {
+            bankService.deleteUser(model, userId);
+            return "dashboard";
         }
         catch(GringottsException e)
         {

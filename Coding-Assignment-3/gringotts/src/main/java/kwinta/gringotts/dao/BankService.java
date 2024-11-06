@@ -56,20 +56,6 @@ public class BankService
         return model;
     }
 
-    public void deleteUser(Model model, int id) 
-    throws WizardNotFound
-    {
-        Optional<Wizard> w = wizardRepository.findById(id);
-        if(!w.isPresent())
-            throw new WizardNotFound();
-
-        List<Vault> vaults = vaultRepository.findVaultsByWizard(id);
-        for(Vault v : vaults)
-            vaultRepository.deleteById(v.getVaultNum());
-
-        wizardRepository.deleteById(id);
-    }
-
     public Model checkNewWizard(Model model, String username, String password)
     throws LoginFailException
     {
@@ -185,7 +171,7 @@ public class BankService
 
     @Transactional
     public Model doTransfer(Model model, int id, String recipient, int v1,
-                            int v2, int gal, int sic, int knt) 
+                            int v2, String gal, String sic, String knt) 
     throws WizardNotFound, VaultNotFound, VaultForbiddenException, BadTransferException
     {
         Optional<Wizard> w = wizardRepository.findById(id);
@@ -198,11 +184,21 @@ public class BankService
 
         if(vault.get().getWizard() != w.get().getId())
             throw new VaultForbiddenException();
+        
+        try
+        {
+            Integer iGal = new Integer(gal);
+            Integer iSic = new Integer(sic);
+            Integer iKnt = new Integer(knt);
+        catch(NumberFormatException e)
+        {
+            throw new BadTransferException("bad-value");
+        }
 
         if(v1 == v2)
             throw new BadTransferException("same-vault");
 
-        int value = (493 * gal) + (29 * sic) + knt;
+        int value = (493 * iGal) + (29 * iSic) + iKnt;
         if(value <= 0)
             throw new BadTransferException("bad-value");
 
@@ -231,6 +227,20 @@ public class BankService
         model.addAttribute("userId", id);
         model.addAttribute("vaults", vaultRepository.findVaultsByWizard(id));
         return model;
+    }
+
+    public void deleteUser(Model model, int id) 
+    throws WizardNotFound
+    {
+        Optional<Wizard> w = wizardRepository.findById(id);
+        if(!w.isPresent())
+            throw new WizardNotFound();
+
+        List<Vault> vaults = vaultRepository.findVaultsByWizard(id);
+        for(Vault v : vaults)
+            vaultRepository.deleteById(v.getVaultNum());
+
+        wizardRepository.deleteById(id);
     }
 
     public Model simplify(Model model, int id, int vn) 

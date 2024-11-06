@@ -6,7 +6,7 @@ public class GringottsException extends RuntimeException
 
     public GringottsException()
     {
-        this.errMsg = "error";
+        this.errMsg = "generic";
     }
 
     public GringottsException(String errMsg)
