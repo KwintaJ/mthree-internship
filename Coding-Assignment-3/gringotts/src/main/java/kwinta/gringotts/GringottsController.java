@@ -1,8 +1,6 @@
 package kwinta.gringotts;
 
-import kwinta.gringotts.entities.*;
-import kwinta.gringotts.dao.*;
-import kwinta.gringotts.exceptions.*;
+import kwinta.gringotts.exceptions.GringottsException;
 
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
@@ -17,12 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class GringottsController 
 {
     @Autowired
-    private WizardRepository wizardRepository;
-    @Autowired
-    private VaultRepository vaultRepository;
-    @Autowired
-    private TransactionRepository transactionRepository;
-    @Autowired
     private BankService bankService;
 
     @GetMapping("/home")
@@ -32,10 +24,28 @@ public class GringottsController
     }
 
     @GetMapping("/sign-in")
-    public String login(Model model)
+    public String signIn(Model model)
     {
         return "login";
     }
+
+    @GetMapping("/login")
+    public String logIn(Model model, @RequestParam String username, @RequestParam String password)
+    {
+        try
+        {
+            model = bankService.checkLogin(model, username, password);
+            return "user";
+        }
+        catch(GringottsException e)
+        {
+            return "fail-" + e.getMessage();
+        }
+        catch(Exception e)
+        {
+            return "fail-generic";
+        }
+    } 
 
     @GetMapping("/register")
     public String register(Model model)
@@ -79,28 +89,10 @@ public class GringottsController
         {
             return "fail-generic";
         }
-    }
-
-    @GetMapping("/login")
-    public String login(Model model, @RequestParam String username, @RequestParam String password)
-    {
-        try
-        {
-            model = bankService.checkLogin(model, username, password);
-            return "user";
-        }
-        catch(GringottsException e)
-        {
-            return "fail-" + e.getMessage();
-        }
-        catch(Exception e)
-        {
-            return "fail-generic";
-        }
-    }   
+    }  
 
     @GetMapping("/account/{id}")
-    public String showAccount(Model model, @PathVariable("id") int id)
+    public String accountDetails(Model model, @PathVariable("id") int id)
     {
         try
         {

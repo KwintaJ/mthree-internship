@@ -19,3 +19,4 @@ Documentation
 **1.1** - error pages  
 **1.2** - exception handling update   
 **1.3** - refresh button   
+**1.4** - ERD and UML diagrams  
