@@ -1,5 +1,6 @@
 package kwinta.gringotts;
 
+import kwinta.gringotts.dao.BankService;
 import kwinta.gringotts.exceptions.GringottsException;
 
 import org.springframework.ui.Model;
