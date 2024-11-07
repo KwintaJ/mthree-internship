@@ -11,6 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 
+/*
+ * VIEW CONTROLLER
+ * This class handles http requests 
+ * and sends JSP to client
+ * 
+ * When exception thrown by BankService
+ * is caught appropriate fail-... JSP
+ * is provided
+ */
 @Controller
 public class GringottsController 
 {

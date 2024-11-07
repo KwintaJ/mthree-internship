@@ -15,6 +15,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import jakarta.transaction.Transactional;
 
+/*
+ * DATA ACCESS
+ * This class handles data operations
+ * on CRUD repositories
+ * 
+ * When error is detected BankService
+ * can throw GringottsException
+ *
+ * All public methods return springframework.ui.Model
+ * to be later delivered as page attributes by JSP
+ */
 @Service
 public class BankService
 {
@@ -43,6 +54,7 @@ public class BankService
         return model;
     }
 
+    // check if user exists in /go-back, /refresh and /account requests
     public Model checkUser(Model model, int id) 
     throws WizardNotFound
     {
@@ -56,6 +68,7 @@ public class BankService
         return model;
     }
 
+    // check if user already has an account; if not create new account
     public Model checkNewWizard(Model model, String username, String password)
     throws LoginFailException
     {
@@ -75,6 +88,7 @@ public class BankService
         return model;
     }
 
+    // one wizard can have max 3 vaults
     public Model checkNewVaultClaim(Model model, int id) 
     throws WizardNotFound, TooManyVaultsException
     {
@@ -150,6 +164,7 @@ public class BankService
         return model;
     }
 
+    // initial part of transfer
     public Model checkTransferInit(Model model, int id, int vn)
     throws WizardNotFound, VaultNotFound, VaultForbiddenException
     {
@@ -169,6 +184,7 @@ public class BankService
         return model;
     }
 
+    // second part of transfer, after submitting the form
     @Transactional
     public Model doTransfer(Model model, int id, String recipient, int v1,
                             int v2, String gal, String sic, String knt) 
@@ -269,6 +285,7 @@ public class BankService
         return model;
     }
     
+    // knuts get converted into sickles, sickles into galleons
     private void pSimplify(int vn)
     {
         Vault v = vaultRepository.findById(vn).get();
@@ -284,6 +301,7 @@ public class BankService
         vaultRepository.save(v);
     }
 
+    // sickles and galleons get converted into knuts 
     private int balanceInKnuts(int vn)
     {
         int balance = 0;

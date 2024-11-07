@@ -20,3 +20,4 @@ Documentation
 **1.2** - exception handling update   
 **1.3** - refresh button   
 **1.4** - ERD and UML diagrams  
+**1.5** - comments and code clarity polishing  
