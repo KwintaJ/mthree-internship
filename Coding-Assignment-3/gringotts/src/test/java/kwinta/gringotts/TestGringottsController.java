@@ -1,6 +1,6 @@
 package kwinta.gringotts;
 
-import kwinta.gringotts.dao.*;
+import kwinta.gringotts.*;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,14 +8,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.springframework.ui.Model;
 
-class TestBankService
+class TestGringottsController
 {
     private Model model;
 
     @Test
     void test1() throws Exception
     {
-        BankService service = new BankService();
+        GringottsController controller = new GringottsController();
+        assertEquals(controller.home(model), "dashboard");
     }
     // @Test
     // void test1a() throws Exception
