@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * For more information check README
  *
  * mvn spring-boot:run
+ * mvn test
  * 
  * Latest version: 
  * https://github.com/KwintaJ/mthree-internship/tree/main/Coding-Assignment-3

@@ -28,7 +28,7 @@ public class GringottsController
     @Autowired
     private BankService bankService;
 
-    @GetMapping("/home")
+    @GetMapping({"/", "/home"})
     public String home(Model model)
     {
         return "dashboard";

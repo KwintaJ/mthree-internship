@@ -74,6 +74,4 @@ class CRUDTestTransaction
         repo.deleteById(id);
         assertTrue(repo.getVaultsTransactions(17).size() == 0);
     }
-
-    
 }

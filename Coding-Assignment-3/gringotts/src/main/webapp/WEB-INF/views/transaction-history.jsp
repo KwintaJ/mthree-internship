@@ -27,6 +27,7 @@
         %>
             <div class="vault-box">
                 <h3>Transaction Id: <%= t.getTransactionId() %></h3>
+                <p><%= t.getTransactionTime() %></p>
                 <p>From vault <%= t.getFromVault() %></p>
                 <p>To vault <%= t.getToVault() %></p>
                 <p><%= t.getKnuts() / 493 %> Galleons, <%= (t.getKnuts() % 493) / 29 %> Sickles and <%= t.getKnuts() % 29 %> Knuts</p>
