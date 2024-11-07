@@ -4,12 +4,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /*
- * cc by Jan Kwinta Nov 2024
+ * by Jan Kwinta Nov 2024
  * 
  * This is a web application of
  * Gringott's Wizarding Bank
  * 
  * For more information check README
+ *
  * mvn spring-boot:run
  * 
  * Latest version: 
