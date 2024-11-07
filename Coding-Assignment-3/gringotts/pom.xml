@@ -16,8 +16,6 @@
     <packaging>war</packaging>
     <properties>
         <java.version>17</java.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <dependencies>
         <dependency>
@@ -58,12 +56,16 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.6.2</version>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -88,31 +90,16 @@
             </plugin>
 
             <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0</version>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
                 <configuration>
-                    <parallel>methods</parallel>
-                    <threadCount>10</threadCount>
                     <includes>
-                        <include>**/Test*.java</include>
-                        <include>**/Test.java</include>
-                        <include>**/TestCase.java</include>
+                        <include>CRUDTestWizard.java</include>
+                        <include>CRUDTestVault.java</include>
+                        <include>CRUDTestTransaction.java</include>
                     </includes>
-                    <excludes>
-                        <exclude>**/*Abstract*Test.java</exclude>
-                    </excludes>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.19.1</version>
-            </plugin>
-        </plugins>
-    </reporting>
 </project>
